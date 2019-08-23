@@ -1,0 +1,44 @@
+
+    <!DOCTYPE HTML>
+    <html lang="en">
+      <head>
+          <title>Bubble Sort</title>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="stylesheet" href="../css/mergesort.css">
+          <script src="../js/ms_ex.js"></script>
+      </head>
+      <body onload="reset()" onresize="draw()">
+        
+          <div class="instruction">
+              <b>Instructions</b>:
+              <ul>
+              <li>Enter the indices between which you want to split the array appearing in green.</li>
+              <li> After completing the split step, you will have to enter comma separated values for merging the array appearing in green.</li>
+              <li>If your answer is wrong, you will see a message indicating the same.</li></ul>
+          </div>
+         
+        
+            <div>
+              <canvas id="canvas" width="400" height="240"></canvas>
+            </div>
+        
+        
+        <p type="hidden" id="split">
+              Split the array between : <input type="number" name="a" id="split-input1" min="1" max="10">
+              and : <input type="number" name="b" id="split-input2" min="1" max="10">
+              <button id="split-button">Split</button>
+              <button class = "button" id="split-reset">Reset</button>
+              <button class = "button" id="split-undo">Undo</button>
+            </p>
+        
+            <p type="hidden" id="merge">
+              Comma separated values of merged array :
+              <input name="textbox1" id="merge-input" type="text" />
+              <button class = "button" id="merge-button">Merge </button>
+              <button class = "button" id="merge-reset">Reset</button>
+              <button class = "button" id="merge-undo">Undo</button>
+            </p>
+        
+      </body>
+    </html>

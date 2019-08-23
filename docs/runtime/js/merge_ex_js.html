@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Demonstration artefact for Merge Sort (Javascript)</title>
+<!-- 2019-08-23 Fri 14:57 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="VLEAD" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Demonstration artefact for Merge Sort (Javascript)</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Exercise artefact for merge step</a></li>
+<li><a href="#sec-2">2. Merge_sort Class</a></li>
+<li><a href="#sec-3">3. Event handlers</a></li>
+<li><a href="#sec-4">4. Reset function</a></li>
+<li><a href="#sec-5">5. Draw Arrays</a></li>
+<li><a href="#sec-6">6. Draw List functions</a></li>
+<li><a href="#sec-7">7. Draw Arrows</a></li>
+<li><a href="#sec-8">8. Array1 and Array2 Button</a></li>
+<li><a href="#sec-9">9. Tangle</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Exercise artefact for merge step</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>This artefact is a step by step interactive exercise for merge step.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Merge_sort Class</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>Creates Merge_sort class, which has all the variables required during its running
+</li>
+<li>temp -&gt; the initial array of unsorted elements.
+</li>
+<li>merged -&gt; boolean variable whether  the array is sorted or not.
+</li>
+<li>current1 -&gt; used to track the current index in list1.
+</li>
+<li>current2 -&gt; used to track the current index in list2.
+</li>
+<li>current3 -&gt; used to track the current index in temp.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-js" id="ex-class">  <span style="font-weight: bold;">class</span> Merge_sort{
+    constructor(){
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.list1 = [];
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.list2 = [];
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.temp = [];
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.current1 = 0; 
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.current2 = 0; 
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.current3 = 0;
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.merged = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+    }
+  }
+  <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">merge_artefact</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Merge_sort</span>();
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Event handlers</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>A function that adds all the event handlers to the html document
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-js" id="ex-handlers"> <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">handlers</span>(){ 
+  document.getElementById(<span style="font-style: italic;">"array1"</span>).onclick = <span style="font-weight: bold;">function</span>() { array1(1); };
+  document.getElementById(<span style="font-style: italic;">"array2"</span>).onclick = <span style="font-weight: bold;">function</span>() { array2(2); };
+  document.getElementById(<span style="font-style: italic;">"reset"</span>).onclick = <span style="font-weight: bold;">function</span>() { reset(); };
+ };
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Reset function</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Function to clear out previous data and start over with a new set of numbers.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-js" id="ex-reset">  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">reset</span>() {
+    merge_artefact.current1 = 0; 
+    merge_artefact.current2 = 0; 
+    merge_artefact.current3 = 0; 
+    merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; 5; i++) {
+      merge_artefact.list1[i] = Math.floor(Math.random() * 90 + 10);
+      merge_artefact.list2[i] = Math.floor(Math.random() * 90 + 10);
+    }
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; 10; i++) {
+      merge_artefact.temp[i] = 0;
+    }
+    merge_artefact.list1.sort();
+    merge_artefact.list2.sort();
+    draw();
+    handlers();
+  }
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Draw Arrays</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>Draw the arrays on the canvas and draw the respective pointers to starting of each array.
+</li>
+<li>clearRect() -&gt; will clear the canvas
+</li>
+<li>strokeStyle -&gt; Set a pen color
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-js" id="ex-draw-arrays">  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">draw</span>() {
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">canvas</span> = document.getElementById(<span style="font-style: italic;">'canvas'</span>);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">context</span> = canvas.getContext(<span style="font-style: italic;">"2d"</span>);
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Reset size will clear the canvas, but not for IE9</span>
+    canvas.width = 850;
+    canvas.height = 300;
+    context.clearRect(0, 0, canvas.width, canvas.height); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">For IE 9</span>
+    context.font = <span style="font-style: italic;">"14px sans-serif"</span>;
+    context.strokeStyle = <span style="font-style: italic;">"black"</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Set a pen color</span>
+    drawList(context, merge_artefact.list1, 50, 20, <span style="font-style: italic;">"Subarray 1"</span>);
+    drawList(context, merge_artefact.list2, 400, 20, <span style="font-style: italic;">"Subarray 2"</span>);
+    drawList3(context, merge_artefact.temp, 85, 150, <span style="font-style: italic;">"Merged array"</span>);
+    drawLine(context, 50, 15, merge_artefact.current1, <span style="font-style: italic;">"Pointer-1"</span>);
+    drawLine(context, 400, 15, merge_artefact.current2, <span style="font-style: italic;">"Pointer-2"</span>);
+    drawLine3(context, 85, 150, merge_artefact.current3, <span style="font-style: italic;">"Pointer-3"</span>);
+    <span style="font-weight: bold;">if</span> (merge_artefact.merged &amp;&amp; merge_artefact.current3==10){
+      context.font = <span style="font-style: italic;">"17px Arial"</span>;
+      context.fillText(<span style="font-style: italic;">"Arrays are now merged!"</span>, canvas.width / 2 - 100, canvas.height-10 );
+      context.font = <span style="font-style: italic;">"15px Arial"</span>;
+    }
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (merge_artefact.merged) {
+      context.font = <span style="font-style: italic;">"17px Arial"</span>;
+      context.fillText(<span style="font-style: italic;">"Wrong step, Try again!"</span>, canvas.width / 2 - 100, canvas.height-10 );
+      context.font = <span style="font-style: italic;">"15px Arial"</span>;
+    }
+    context.stroke();
+  }
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Draw List functions</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>The draw list functions(drawList and drawList3) that draw the different types of lists in the tree (Sorted and unsorted). Used by the draw() functions.
+</li>
+<li>Draw the arrays on the canvas and draw the respective pointers to starting of each array.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-js" id="ex-draw-list">  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">drawList</span>(<span style="font-weight: bold; font-style: italic;">context</span>, <span style="font-weight: bold; font-style: italic;">list</span>, <span style="font-weight: bold; font-style: italic;">startX</span>, <span style="font-weight: bold; font-style: italic;">startY</span>, <span style="font-weight: bold; font-style: italic;">title</span>) {
+    context.fillStyle = <span style="font-style: italic;">"black"</span>;
+    context.font = <span style="font-style: italic;">"15px Arial"</span>;
+    context.fillText(title, 40 * (0 + 1) + startX - 20, 80 + startY);
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; list.length; i++) {
+      context.fillStyle = <span style="font-style: italic;">"#288ec8"</span>;
+      context.fillRect(50 * (i + 2) + startX, 50 + startY, 48, 50);
+    }
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; list.length; i++) {
+      <span style="font-weight: bold;">if</span> (list[i] != 0) {
+        context.fillStyle = <span style="font-style: italic;">"white"</span>;
+        context.font = <span style="font-style: italic;">"17px Arial"</span>;
+        context.fillText(list[i] + <span style="font-style: italic;">""</span>, 50 * (i + 2) + 15 + startX, 80 + startY);
+        context.font = <span style="font-style: italic;">"15px Arial"</span>;
+      }
+    }
+  }
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">drawList3</span>(<span style="font-weight: bold; font-style: italic;">context</span>, <span style="font-weight: bold; font-style: italic;">list</span>, <span style="font-weight: bold; font-style: italic;">startX</span>, <span style="font-weight: bold; font-style: italic;">startY</span>, <span style="font-weight: bold; font-style: italic;">title</span>) {
+    context.fillStyle = <span style="font-style: italic;">"black"</span>;
+    context.font = <span style="font-style: italic;">"15px Arial"</span>;
+    context.fillText(title, 40 * (0 + 1) + startX - 35, 80 + startY);
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; list.length; i++) {
+      context.fillStyle = <span style="font-style: italic;">"#a4c652"</span>;
+      context.fillRect(50 * (i + 2) + startX, 50 + startY, 48, 50);
+    }
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; list.length; i++) {
+      <span style="font-weight: bold;">if</span> (list[i] != 0) {
+        context.fillStyle = <span style="font-style: italic;">"white"</span>;
+        context.font = <span style="font-style: italic;">"17px Arial"</span>;
+        context.fillText(list[i] + <span style="font-style: italic;">""</span>, 50 * (i + 2) + 15 + startX, 80 + startY);
+        context.font = <span style="font-style: italic;">"15px Arial"</span>;
+      }
+    }
+  }
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Draw Arrows</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>Draw the arrows pointing to beginning of the arrays.
+</li>
+<li>slope -&gt; Has slope of the line
+</li>
+<li>moveTo(x1, y1),lineTo(x2, y2) -&gt; draws line from (x1,y1) to (x2,y2).
+</li>
+<li>arrlen -&gt; Has length of arrows 
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-js" id="ex-draw-arrows">  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">drawLine</span>(<span style="font-weight: bold; font-style: italic;">context</span>, <span style="font-weight: bold; font-style: italic;">startX</span>, <span style="font-weight: bold; font-style: italic;">startY</span>, <span style="font-weight: bold; font-style: italic;">index</span>, <span style="font-weight: bold; font-style: italic;">title</span>) {
+    context.fillStyle = <span style="font-style: italic;">"black"</span>;
+    context.fillText(title, 50 * (index + 1) + startX + 55, startY);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">x</span> = 50 * (index + 1) + startX + 75;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">y</span> = startY + 10;
+    context.fillStyle = <span style="font-style: italic;">"black"</span>;
+    drawArrowLine(context, x, y, x, y + 35);
+  }
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">drawLine3</span>(<span style="font-weight: bold; font-style: italic;">context</span>, <span style="font-weight: bold; font-style: italic;">startX</span>, <span style="font-weight: bold; font-style: italic;">startY</span>, <span style="font-weight: bold; font-style: italic;">index</span>, <span style="font-weight: bold; font-style: italic;">title</span>) {
+    context.fillStyle = <span style="font-style: italic;">"black"</span>;
+    context.fillText(title, 50 * (index + 1) + startX + 5, startY);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">x</span> = 50 * (index + 1) + startX + 25;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">y</span> = startY + 10;
+    context.fillStyle = <span style="font-style: italic;">"black"</span>;
+    drawArrowLine(context, x, y, x, y + 35);
+  }
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">drawArrowLine</span>(<span style="font-weight: bold; font-style: italic;">context</span>, <span style="font-weight: bold; font-style: italic;">x1</span>, <span style="font-weight: bold; font-style: italic;">y1</span>, <span style="font-weight: bold; font-style: italic;">x2</span>, <span style="font-weight: bold; font-style: italic;">y2</span>) {
+    context.fillStyle = <span style="font-style: italic;">"black"</span>;
+    context.moveTo(x1, y1);
+    context.lineTo(x2, y2);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">slope</span> = (y1 - y2) / (x1 - x2);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arctan</span> = Math.atan(slope);
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">This will flip the arrow 45 off of a</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">perpendicular line at pt x2</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">set45</span> = 1.57 / 2;
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">arrows should always point towards i, not i+1</span>
+    <span style="font-weight: bold;">if</span> (x1 &lt; x2) {
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">add 90 degrees to arrow lines</span>
+      set45 = -1.57 * 1.5;
+    }
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arrlen</span> = 7;
+    context.moveTo(x2, y2);
+    context.lineTo(x2 + Math.cos(arctan + set45) * arrlen,
+            y2 + Math.sin(arctan + set45) * arrlen);
+    context.moveTo(x2, y2);
+    context.lineTo(x2 + Math.cos(arctan - set45) * arrlen,
+            y2 + Math.sin(arctan - set45) * arrlen);
+  }
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Array1 and Array2 Button</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li>Next step button will check if the user has input the correct array number. If so, It will push the smaller element to the merged array
+</li>
+</ul>
+<p>
+and increment pointer. Else, an error message is displayed saying "wrong step".
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-js" id="ex-buttons">  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">step</span>() {
+    <span style="font-weight: bold;">if</span> (takeAStep()) {
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">true</span>;
+    }
+    draw();
+  }
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">takeAStep</span>() {
+    <span style="font-weight: bold;">if</span> (merge_artefact.current1 &lt; merge_artefact.list1.length &amp;&amp; merge_artefact.current2 &lt; merge_artefact.list2.length) {
+      <span style="font-weight: bold;">if</span> (merge_artefact.list1[merge_artefact.current1] &lt;= merge_artefact.list2[merge_artefact.current2])
+      {
+        merge_artefact.temp[merge_artefact.current3++] = merge_artefact.list1[merge_artefact.current1++];
+      }
+      <span style="font-weight: bold;">else</span>
+        merge_artefact.temp[merge_artefact.current3++] = merge_artefact.list2[merge_artefact.current2++];
+    }
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (merge_artefact.current1 &lt; merge_artefact.list1.length)
+      merge_artefact.temp[merge_artefact.current3++] = merge_artefact.list1[merge_artefact.current1++];
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (merge_artefact.current2 &lt; merge_artefact.list2.length)
+      merge_artefact.temp[merge_artefact.current3++] = merge_artefact.list2[merge_artefact.current2++];
+    <span style="font-weight: bold;">else</span>
+      <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">true</span>;
+    <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">false</span>;
+  }
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">array1</span>(<span style="font-weight: bold; font-style: italic;">arrayno</span>) {
+    <span style="font-weight: bold;">if</span> ((merge_artefact.list1[merge_artefact.current1] &lt;= merge_artefact.list2[merge_artefact.current2]) &amp;&amp; (arrayno == 1)){
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+      step();
+    }
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (merge_artefact.current1 &lt; merge_artefact.list1.length &amp;&amp; merge_artefact.current2 == merge_artefact.list2.length){
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+      step();
+    }
+    <span style="font-weight: bold;">else</span>{
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">true</span>;
+      draw();
+    }
+    <span style="font-weight: bold;">if</span> (merge_artefact.current3==10){
+     context.font = <span style="font-style: italic;">"17px Arial"</span>;
+     context.fillText(<span style="font-style: italic;">"Wrong step, Try again!"</span>, canvas.width / 2 - 100, canvas.height-10 );
+     context.font = <span style="font-style: italic;">"15px Arial"</span>;
+     context.stroke();
+    }
+  }
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">array2</span>(<span style="font-weight: bold; font-style: italic;">arrayno</span>) {
+    <span style="font-weight: bold;">if</span> ((merge_artefact.list1[merge_artefact.current1] &gt; merge_artefact.list2[merge_artefact.current2]) &amp;&amp; (arrayno == 2)){
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+      step();
+    }
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (merge_artefact.current2 &lt; merge_artefact.list2.length &amp;&amp; merge_artefact.current1 == merge_artefact.list1.length){
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+      step();
+    }
+    <span style="font-weight: bold;">else</span>{
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">true</span>;
+      draw();
+    }
+    <span style="font-weight: bold;">if</span> (merge_artefact.current3==10){
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">true</span>;
+    }
+  }
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> Tangle</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+
+<pre class="src src-js">  <span style="font-weight: bold;">class</span> Merge_sort{
+    constructor(){
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.list1 = [];
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.list2 = [];
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.temp = [];
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.current1 = 0; 
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.current2 = 0; 
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.current3 = 0;
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.merged = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+    }
+  }
+  <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">merge_artefact</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Merge_sort</span>();
+
+
+ <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">handlers</span>(){ 
+  document.getElementById(<span style="font-style: italic;">"array1"</span>).onclick = <span style="font-weight: bold;">function</span>() { array1(1); };
+  document.getElementById(<span style="font-style: italic;">"array2"</span>).onclick = <span style="font-weight: bold;">function</span>() { array2(2); };
+  document.getElementById(<span style="font-style: italic;">"reset"</span>).onclick = <span style="font-weight: bold;">function</span>() { reset(); };
+ };
+ 
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">reset</span>() {
+    merge_artefact.current1 = 0; 
+    merge_artefact.current2 = 0; 
+    merge_artefact.current3 = 0; 
+    merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; 5; i++) {
+      merge_artefact.list1[i] = Math.floor(Math.random() * 90 + 10);
+      merge_artefact.list2[i] = Math.floor(Math.random() * 90 + 10);
+    }
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; 10; i++) {
+      merge_artefact.temp[i] = 0;
+    }
+    merge_artefact.list1.sort();
+    merge_artefact.list2.sort();
+    draw();
+    handlers();
+  }
+
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">draw</span>() {
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">canvas</span> = document.getElementById(<span style="font-style: italic;">'canvas'</span>);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">context</span> = canvas.getContext(<span style="font-style: italic;">"2d"</span>);
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Reset size will clear the canvas, but not for IE9</span>
+    canvas.width = 850;
+    canvas.height = 300;
+    context.clearRect(0, 0, canvas.width, canvas.height); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">For IE 9</span>
+    context.font = <span style="font-style: italic;">"14px sans-serif"</span>;
+    context.strokeStyle = <span style="font-style: italic;">"black"</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Set a pen color</span>
+    drawList(context, merge_artefact.list1, 50, 20, <span style="font-style: italic;">"Subarray 1"</span>);
+    drawList(context, merge_artefact.list2, 400, 20, <span style="font-style: italic;">"Subarray 2"</span>);
+    drawList3(context, merge_artefact.temp, 85, 150, <span style="font-style: italic;">"Merged array"</span>);
+    drawLine(context, 50, 15, merge_artefact.current1, <span style="font-style: italic;">"Pointer-1"</span>);
+    drawLine(context, 400, 15, merge_artefact.current2, <span style="font-style: italic;">"Pointer-2"</span>);
+    drawLine3(context, 85, 150, merge_artefact.current3, <span style="font-style: italic;">"Pointer-3"</span>);
+    <span style="font-weight: bold;">if</span> (merge_artefact.merged &amp;&amp; merge_artefact.current3==10){
+      context.font = <span style="font-style: italic;">"17px Arial"</span>;
+      context.fillText(<span style="font-style: italic;">"Arrays are now merged!"</span>, canvas.width / 2 - 100, canvas.height-10 );
+      context.font = <span style="font-style: italic;">"15px Arial"</span>;
+    }
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (merge_artefact.merged) {
+      context.font = <span style="font-style: italic;">"17px Arial"</span>;
+      context.fillText(<span style="font-style: italic;">"Wrong step, Try again!"</span>, canvas.width / 2 - 100, canvas.height-10 );
+      context.font = <span style="font-style: italic;">"15px Arial"</span>;
+    }
+    context.stroke();
+  }
+
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">drawList</span>(<span style="font-weight: bold; font-style: italic;">context</span>, <span style="font-weight: bold; font-style: italic;">list</span>, <span style="font-weight: bold; font-style: italic;">startX</span>, <span style="font-weight: bold; font-style: italic;">startY</span>, <span style="font-weight: bold; font-style: italic;">title</span>) {
+    context.fillStyle = <span style="font-style: italic;">"black"</span>;
+    context.font = <span style="font-style: italic;">"15px Arial"</span>;
+    context.fillText(title, 40 * (0 + 1) + startX - 20, 80 + startY);
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; list.length; i++) {
+      context.fillStyle = <span style="font-style: italic;">"#288ec8"</span>;
+      context.fillRect(50 * (i + 2) + startX, 50 + startY, 48, 50);
+    }
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; list.length; i++) {
+      <span style="font-weight: bold;">if</span> (list[i] != 0) {
+        context.fillStyle = <span style="font-style: italic;">"white"</span>;
+        context.font = <span style="font-style: italic;">"17px Arial"</span>;
+        context.fillText(list[i] + <span style="font-style: italic;">""</span>, 50 * (i + 2) + 15 + startX, 80 + startY);
+        context.font = <span style="font-style: italic;">"15px Arial"</span>;
+      }
+    }
+  }
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">drawList3</span>(<span style="font-weight: bold; font-style: italic;">context</span>, <span style="font-weight: bold; font-style: italic;">list</span>, <span style="font-weight: bold; font-style: italic;">startX</span>, <span style="font-weight: bold; font-style: italic;">startY</span>, <span style="font-weight: bold; font-style: italic;">title</span>) {
+    context.fillStyle = <span style="font-style: italic;">"black"</span>;
+    context.font = <span style="font-style: italic;">"15px Arial"</span>;
+    context.fillText(title, 40 * (0 + 1) + startX - 35, 80 + startY);
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; list.length; i++) {
+      context.fillStyle = <span style="font-style: italic;">"#a4c652"</span>;
+      context.fillRect(50 * (i + 2) + startX, 50 + startY, 48, 50);
+    }
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; list.length; i++) {
+      <span style="font-weight: bold;">if</span> (list[i] != 0) {
+        context.fillStyle = <span style="font-style: italic;">"white"</span>;
+        context.font = <span style="font-style: italic;">"17px Arial"</span>;
+        context.fillText(list[i] + <span style="font-style: italic;">""</span>, 50 * (i + 2) + 15 + startX, 80 + startY);
+        context.font = <span style="font-style: italic;">"15px Arial"</span>;
+      }
+    }
+  }
+      
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">drawLine</span>(<span style="font-weight: bold; font-style: italic;">context</span>, <span style="font-weight: bold; font-style: italic;">startX</span>, <span style="font-weight: bold; font-style: italic;">startY</span>, <span style="font-weight: bold; font-style: italic;">index</span>, <span style="font-weight: bold; font-style: italic;">title</span>) {
+    context.fillStyle = <span style="font-style: italic;">"black"</span>;
+    context.fillText(title, 50 * (index + 1) + startX + 55, startY);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">x</span> = 50 * (index + 1) + startX + 75;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">y</span> = startY + 10;
+    context.fillStyle = <span style="font-style: italic;">"black"</span>;
+    drawArrowLine(context, x, y, x, y + 35);
+  }
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">drawLine3</span>(<span style="font-weight: bold; font-style: italic;">context</span>, <span style="font-weight: bold; font-style: italic;">startX</span>, <span style="font-weight: bold; font-style: italic;">startY</span>, <span style="font-weight: bold; font-style: italic;">index</span>, <span style="font-weight: bold; font-style: italic;">title</span>) {
+    context.fillStyle = <span style="font-style: italic;">"black"</span>;
+    context.fillText(title, 50 * (index + 1) + startX + 5, startY);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">x</span> = 50 * (index + 1) + startX + 25;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">y</span> = startY + 10;
+    context.fillStyle = <span style="font-style: italic;">"black"</span>;
+    drawArrowLine(context, x, y, x, y + 35);
+  }
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">drawArrowLine</span>(<span style="font-weight: bold; font-style: italic;">context</span>, <span style="font-weight: bold; font-style: italic;">x1</span>, <span style="font-weight: bold; font-style: italic;">y1</span>, <span style="font-weight: bold; font-style: italic;">x2</span>, <span style="font-weight: bold; font-style: italic;">y2</span>) {
+    context.fillStyle = <span style="font-style: italic;">"black"</span>;
+    context.moveTo(x1, y1);
+    context.lineTo(x2, y2);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">slope</span> = (y1 - y2) / (x1 - x2);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arctan</span> = Math.atan(slope);
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">This will flip the arrow 45 off of a</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">perpendicular line at pt x2</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">set45</span> = 1.57 / 2;
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">arrows should always point towards i, not i+1</span>
+    <span style="font-weight: bold;">if</span> (x1 &lt; x2) {
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">add 90 degrees to arrow lines</span>
+      set45 = -1.57 * 1.5;
+    }
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arrlen</span> = 7;
+    context.moveTo(x2, y2);
+    context.lineTo(x2 + Math.cos(arctan + set45) * arrlen,
+            y2 + Math.sin(arctan + set45) * arrlen);
+    context.moveTo(x2, y2);
+    context.lineTo(x2 + Math.cos(arctan - set45) * arrlen,
+            y2 + Math.sin(arctan - set45) * arrlen);
+  }
+      
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">step</span>() {
+    <span style="font-weight: bold;">if</span> (takeAStep()) {
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">true</span>;
+    }
+    draw();
+  }
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">takeAStep</span>() {
+    <span style="font-weight: bold;">if</span> (merge_artefact.current1 &lt; merge_artefact.list1.length &amp;&amp; merge_artefact.current2 &lt; merge_artefact.list2.length) {
+      <span style="font-weight: bold;">if</span> (merge_artefact.list1[merge_artefact.current1] &lt;= merge_artefact.list2[merge_artefact.current2])
+      {
+        merge_artefact.temp[merge_artefact.current3++] = merge_artefact.list1[merge_artefact.current1++];
+      }
+      <span style="font-weight: bold;">else</span>
+        merge_artefact.temp[merge_artefact.current3++] = merge_artefact.list2[merge_artefact.current2++];
+    }
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (merge_artefact.current1 &lt; merge_artefact.list1.length)
+      merge_artefact.temp[merge_artefact.current3++] = merge_artefact.list1[merge_artefact.current1++];
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (merge_artefact.current2 &lt; merge_artefact.list2.length)
+      merge_artefact.temp[merge_artefact.current3++] = merge_artefact.list2[merge_artefact.current2++];
+    <span style="font-weight: bold;">else</span>
+      <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">true</span>;
+    <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">false</span>;
+  }
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">array1</span>(<span style="font-weight: bold; font-style: italic;">arrayno</span>) {
+    <span style="font-weight: bold;">if</span> ((merge_artefact.list1[merge_artefact.current1] &lt;= merge_artefact.list2[merge_artefact.current2]) &amp;&amp; (arrayno == 1)){
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+      step();
+    }
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (merge_artefact.current1 &lt; merge_artefact.list1.length &amp;&amp; merge_artefact.current2 == merge_artefact.list2.length){
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+      step();
+    }
+    <span style="font-weight: bold;">else</span>{
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">true</span>;
+      draw();
+    }
+    <span style="font-weight: bold;">if</span> (merge_artefact.current3==10){
+     context.font = <span style="font-style: italic;">"17px Arial"</span>;
+     context.fillText(<span style="font-style: italic;">"Wrong step, Try again!"</span>, canvas.width / 2 - 100, canvas.height-10 );
+     context.font = <span style="font-style: italic;">"15px Arial"</span>;
+     context.stroke();
+    }
+  }
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">array2</span>(<span style="font-weight: bold; font-style: italic;">arrayno</span>) {
+    <span style="font-weight: bold;">if</span> ((merge_artefact.list1[merge_artefact.current1] &gt; merge_artefact.list2[merge_artefact.current2]) &amp;&amp; (arrayno == 2)){
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+      step();
+    }
+    <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (merge_artefact.current2 &lt; merge_artefact.list2.length &amp;&amp; merge_artefact.current1 == merge_artefact.list1.length){
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+      step();
+    }
+    <span style="font-weight: bold;">else</span>{
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">true</span>;
+      draw();
+    }
+    <span style="font-weight: bold;">if</span> (merge_artefact.current3==10){
+      merge_artefact.merged = <span style="font-weight: bold; text-decoration: underline;">true</span>;
+    }
+  }
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2019-05-22 Wed</p>
+<p class="author">Author: VLEAD</p>
+<p class="date">Created: 2019-08-23 Fri 14:57</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

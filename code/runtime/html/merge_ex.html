@@ -1,0 +1,36 @@
+
+    <!DOCTYPE HTML>
+    <html lang="en">
+      <head>
+          <title>Bubble Sort</title>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="stylesheet" href="../css/mergesort.css">
+          <script src="../js/merge_ex.js"></script>
+      </head>
+      <body onload="reset()" onresize="draw()">
+        
+          <div class="instruction">
+            <b>Instructions</b>: 
+            <ul>
+            <li>Look at the pointers Pointer1 and Pointer2. Click on the Array1 or Array2 buttons to get the sorted merged array. If the element pointed by Pointer1 is smaller, click on Array1 and if the element pointed by Pointer2 is smaller, click on Array2.</li> 
+            <li>Continue this process till you get the completely sorted merged array.</li>
+            <li>If your answer is wrong, you will see a message indicating the same.</li>
+            </ul> 
+          </div>
+         
+        
+            <div>
+              <canvas id="canvas" width="400" height="240"></canvas>
+            </div>
+        
+        <div id="buttondiv" >
+          <center>
+            <button type="button" class = "button" id="array1">Array 1</button>
+            <button type="button" class = "button" id="array2">Array 2</button>
+            <button type="button" class = "button" id="reset">Reset</button>
+          </center>
+        </div>
+        
+      </body>
+    </html>

@@ -1,0 +1,1079 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Demonstration artefact for Merge Sort (Javascript)</title>
+<!-- 2019-08-23 Fri 14:57 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="VLEAD" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Demonstration artefact for Merge Sort (Javascript)</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Demonstration artefact for merge step</a></li>
+<li><a href="#sec-2">2. Tangle</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Demonstration artefact for merge step</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+
+<pre class="src src-js" id="mergeDemo"><span style="font-weight: bold; font-style: italic;">/*</span><span style="font-weight: bold; font-style: italic;">global alert: true, console: true, ODSA */</span>
+$(document).ready(<span style="font-weight: bold;">function</span>() {
+    <span style="font-style: italic;">"use strict"</span>;
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Load the interpreter created by odsaAV.js</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">config</span> = ODSA.UTILS.loadConfig();
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">interpret</span> = config.interpreter;
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Variables used by "setPosition()"</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">canvasWidth</span> = $(<span style="font-style: italic;">"#container"</span>).width();     <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">The width of the display</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">rowHeight</span> = 70;        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Space required for each row to be displayed</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">blockWidth</span> = 32;       <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">The width of an array element</span>
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Variables used to keep track of the index and array of</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">currently selected element</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">mergeValueIndex</span> = -1;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">mergeValueArr</span> = <span style="font-weight: bold; text-decoration: underline;">null</span>;
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Settings for the AV</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">settings</span> = config.getSettings();
+  
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arraySize</span> = 10,
+        initialArray = [],
+        userAnswerValue = [],
+        userAnswerDepth = [],
+        av = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">JSAV</span>($(<span style="font-style: italic;">".avcontainer"</span>), {settings: settings}),
+        exercise;
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Stores the various JSAV arrays created for the user to enter their solution</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arrays</span> = {};
+  
+    av.recorded();   <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">we are not recording an AV with an algorithm</span>
+  
+
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Process the reset button</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">initialize</span>() {
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Clear all existing arrays</span>
+      $(<span style="font-style: italic;">"#arrays"</span>).html(<span style="font-style: italic;">""</span>);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Generate random numbers for the exercise</span>
+      initialArray = [];
+      userAnswerValue = [];
+      userAnswerDepth = [];
+      <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; arraySize; i++) {
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">randomVal</span> = Math.floor(Math.random() * 100);
+        initialArray[i] = randomVal;
+        userAnswerValue[i] = randomVal;
+      }
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Log the initial state of the exercise</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">initData</span> = {};
+      initData.gen_array = initialArray;
+      ODSA.AV.logExerciseInit(initData);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Dynamically create arrays</span>
+      arrays = {};
+      initArrays(0, initialArray.length - 1, 1, 1, userAnswerDepth, arrays, av);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Reset the merge variables</span>
+      resetMergeVars();
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Create arrays to store the user's answers and hide it because</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">it simply maintains state and is not used for display purposes</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Need to record the order of the values and how deep in the</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">recursion they are in order to ensure a correct answer</span>
+      userAnswerValue = av.ds.array(userAnswerValue, {visible: <span style="font-weight: bold; text-decoration: underline;">false</span>});
+      userAnswerDepth = av.ds.array(userAnswerDepth, {visible: <span style="font-weight: bold; text-decoration: underline;">false</span>});
+  
+      av.forward();
+      av._undo = [];
+      <span style="font-weight: bold;">return</span> [userAnswerValue, userAnswerDepth];
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Create the model solution, which is used for grading the exercise</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">- We must track the value at each horizontal position and vertical</span>
+    <span style="font-weight: bold; font-style: italic;">//   </span><span style="font-weight: bold; font-style: italic;">position (depth) to ensure each element is sorted in the correct order</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">modelSolution</span>(<span style="font-weight: bold; font-style: italic;">jsav</span>) {
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">depth</span> = 1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">modelDepthArr</span> = [];
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">modelArrays</span> = {};
+      initArrays(0, initialArray.length - 1, depth, 1, modelDepthArr, modelArrays, jsav);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">modelArr</span> = jsav.ds.array(initialArray, {
+        indexed: <span style="font-weight: bold; text-decoration: underline;">true</span>,
+        visible: <span style="font-weight: bold; text-decoration: underline;">false</span>
+      });
+      modelDepthArr = jsav.ds.array(modelDepthArr, {
+        indexed: <span style="font-weight: bold; text-decoration: underline;">true</span>,
+        visible: <span style="font-weight: bold; text-decoration: underline;">false</span>
+      });
+      jsav.displayInit();
+  
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">temp</span> = [];
+      mergeSort(jsav, modelArr, temp, modelDepthArr, 0,
+                initialArray.length - 1, depth, 1, modelArrays);
+      <span style="font-weight: bold;">return</span> [modelArr, modelDepthArr];
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Dynamically and recursively create the necessary arrays</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Initialize all single element arrays to contain the appropriate</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">numbers from the initialArray and all other arrays to be empty</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">initArrays</span>(<span style="font-weight: bold; font-style: italic;">left</span>, <span style="font-weight: bold; font-style: italic;">right</span>, <span style="font-weight: bold; font-style: italic;">level</span>, <span style="font-weight: bold; font-style: italic;">column</span>, <span style="font-weight: bold; font-style: italic;">depthArray</span>, <span style="font-weight: bold; font-style: italic;">container</span>, <span style="font-weight: bold; font-style: italic;">jsav</span>) {
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">numElements</span> = right - left + 1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">contents</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Array</span>(numElements);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">isModelAnswer</span> = jsav !== av;
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Set the contents for single element arrays</span>
+      <span style="font-weight: bold;">if</span> (numElements === 1) {
+        contents = [initialArray[left]];
+      }
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Dynamically create and position arrays</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arr</span> = jsav.ds.array(contents,
+                              {indexed: <span style="font-weight: bold; text-decoration: underline;">true</span>, center: <span style="font-weight: bold; text-decoration: underline;">false</span>, layout: <span style="font-style: italic;">"array"</span>});
+  
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">id</span> = <span style="font-style: italic;">"array_"</span> + level + <span style="font-style: italic;">"_"</span> + column;
+      <span style="font-weight: bold;">if</span> (isModelAnswer) {
+        id = <span style="font-style: italic;">"model_"</span> + id;
+      }
+      container[id] = arr;
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Set array attributes</span>
+      arr.element.attr(<span style="font-style: italic;">"id"</span>, id);
+      arr.element.attr(<span style="font-style: italic;">"data-offset"</span>, left);
+      setPosition(arr, level, column);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Attach the click handler to the array</span>
+      <span style="font-weight: bold;">if</span> (!isModelAnswer) { <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">don't attach click handlers for model answer</span>
+        arr.click(<span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">index</span>) { clickHandler(<span style="font-weight: bold; text-decoration: underline;">this</span>, index); });
+      }
+  
+      <span style="font-weight: bold;">if</span> (left === right) {
+        depthArray[left] = level;
+        <span style="font-weight: bold;">return</span>;
+      }
+  
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">mid</span> = Math.floor((left + right) / 2);
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Recurse, passing the appropriate arguments necessary for</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">setPosition() to the next function call</span>
+      initArrays(left, mid, level + 1, 2 * column - 1, depthArray, container, jsav);
+      initArrays(mid + 1, right, level + 1, 2 * column, depthArray, container, jsav);
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Calculate and set the appropriate "top" and "left" CSS values based</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">on the specified array's level of recursion, column number and the</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">number of elements in the array</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">arr - the JSAV array to set the "top" and "left" values for</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">level - the level of recursion, the full-size array is level 1</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">column - the array's column number in the current row</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">setPosition</span>(<span style="font-weight: bold; font-style: italic;">arr</span>, <span style="font-weight: bold; font-style: italic;">level</span>, <span style="font-weight: bold; font-style: italic;">column</span>) {
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Calculate the number of arrays in the current row</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">numArrInRow</span> = Math.pow(2, level - 1);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Calculate the left value of the current array by dividing</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">the width of the canvas by twice the number of arrays that should</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">appear in that row: (canvasWidth / (2 * numArrInRow))</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Odd multiples of the resulting value define a line through the center</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">of each array in the row, found using the formula (2 * column - 1)</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Note: while it is not used, even multiples define the center between</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">two consecutive arrays. Since we want the left value rather than the</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">center value of each array we calculate the length each array</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">(blockWidth *  arr.size()), divide this value in half and</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">subtract it from the center line to find the left value</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">elementLeft</span> = (canvasWidth / (2 * numArrInRow)) * (2 * column - 1) -
+                        (blockWidth * arr.size() / 2),
+          elementTop = rowHeight * (level - 1);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Set the top and left values so that all arrays are spaced properly</span>
+      arr.element.css({left: elementLeft, top: elementTop});
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Generate the model answer (called by modelSolution())</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">mergeSort</span>(<span style="font-weight: bold; font-style: italic;">jsav</span>, <span style="font-weight: bold; font-style: italic;">modelArray</span>, <span style="font-weight: bold; font-style: italic;">temp</span>, <span style="font-weight: bold; font-style: italic;">depthArray</span>, <span style="font-weight: bold; font-style: italic;">l</span>, <span style="font-weight: bold; font-style: italic;">r</span>, <span style="font-weight: bold; font-style: italic;">depth</span>, <span style="font-weight: bold; font-style: italic;">column</span>, <span style="font-weight: bold; font-style: italic;">container</span>) {
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Record the depth and return when list has one element</span>
+      <span style="font-weight: bold;">if</span> (l === r) {
+        depthArray.value(l, depth);
+        <span style="font-weight: bold;">return</span>;
+      }
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Select midpoint</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">mid</span> = Math.floor((l + r) / 2);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Mergesort first half</span>
+      mergeSort(jsav, modelArray, temp, depthArray, l, mid, depth + 1, column * 2 - 1, container);
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Mergesort second half</span>
+      mergeSort(jsav, modelArray, temp, depthArray, mid + 1, r, depth + 1, column * 2, container);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Copy subarray into temp</span>
+      <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = l; i &lt;= r; i++) {
+        temp[i] = modelArray.value(i);
+      }
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Do the merge operation back to the array</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i1</span> = l;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i2</span> = mid + 1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">currArray</span> = container[<span style="font-style: italic;">"model_array_"</span> + depth + <span style="font-style: italic;">"_"</span> + column];
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">lArray</span> = container[<span style="font-style: italic;">"model_array_"</span> + (depth + 1) + <span style="font-style: italic;">"_"</span> + (column * 2 - 1)];
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">rArray</span> = container[<span style="font-style: italic;">"model_array_"</span> + (depth + 1) + <span style="font-style: italic;">"_"</span> + (column * 2)];
+      <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">curr</span> = l; curr &lt;= r; curr++) {
+        <span style="font-weight: bold;">if</span> (i1 === mid + 1) {          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Left sublist exhausted</span>
+          jsav.effects.moveValue(rArray, i2 - mid - 1, currArray, curr - l);
+          modelArray.value(curr, temp[i2++]);
+        } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (i2 &gt; r) {             <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Right sublist exhausted</span>
+          jsav.effects.moveValue(lArray, i1 - l, currArray, curr - l);
+          modelArray.value(curr, temp[i1++]);
+        } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (temp[i1] &lt; temp[i2]) { <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Get smaller</span>
+          jsav.effects.moveValue(lArray, i1 - l, currArray, curr - l);
+          modelArray.value(curr, temp[i1++]);
+        } <span style="font-weight: bold;">else</span> {
+          jsav.effects.moveValue(rArray, i2 - mid - 1, currArray, curr - l);
+          modelArray.value(curr, temp[i2++]);
+        }
+  
+        <span style="font-weight: bold;">if</span> (i1 === mid + 1) {
+          lArray.hide();
+        }
+        <span style="font-weight: bold;">if</span> (i2 &gt; r) {
+          rArray.hide();
+        }
+  
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Update the depth of each number being merged</span>
+        depthArray.value(curr, depth);
+        jsav.stepOption(<span style="font-style: italic;">"grade"</span>, <span style="font-weight: bold; text-decoration: underline;">true</span>);
+        jsav.step();
+      }
+      <span style="font-weight: bold;">return</span>;
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Fixstate method for continuous feedback/fix mode</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Uses the difference between the model and user depth array to determine</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">the absolute index and row where a value should be placed.</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Determine the relative destination index and which column the destination array is in.</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Find the destination array's two sublists and the first remaining element in each.</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Compare these values to determine which should be moved to the destination array.</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Call 'clickHandler' with the appropriate calculated values to select the element to move</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">and call it again to move it to the destination.</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">fixState</span>(<span style="font-weight: bold; font-style: italic;">modelState</span>) {
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Pull the model array and state variables out of the modelState argument</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">modelArr</span> = modelState[0];
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">modelDepthArr</span> = modelState[1];
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span>;
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Find the absolute index where the correct value</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">will be placed and which level it belongs in</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">destIndex</span> = 0;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">destDepth</span> = 0;
+      <span style="font-weight: bold;">for</span> (i = 0; i &lt; modelDepthArr.size(); i++) {
+        <span style="font-weight: bold;">if</span> (modelDepthArr.value(i) !== userAnswerDepth.value(i)) {
+          destIndex = i;
+          destDepth = modelDepthArr.value(i);
+          <span style="font-weight: bold;">break</span>;
+        }
+      }
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Determine the correct column and the relative index where</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">the correct answer will be placed</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">destColumn</span> = 1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">left</span> = 0;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">right</span> = modelArr.size() - 1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">mid</span> = 0;
+  
+      <span style="font-weight: bold;">for</span> (i = 0; i &lt; destDepth - 1; i++) {
+        mid = Math.floor((left + right) / 2);
+  
+        <span style="font-weight: bold;">if</span> (destIndex &lt;= mid) {
+          right = mid;
+          destColumn = 2 * destColumn - 1;
+        } <span style="font-weight: bold;">else</span> {
+          left = mid + 1;
+          destColumn = 2 * destColumn;
+        }
+  
+      }
+  
+      destIndex -= left;
+  
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Get the sub arrays from the hash of JSAV arrays</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">subArr1</span> = arrays[<span style="font-style: italic;">"array_"</span> + (destDepth + 1) + <span style="font-style: italic;">"_"</span> + (2 * destColumn - 1)];
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">subArr2</span> = arrays[<span style="font-style: italic;">"array_"</span> + (destDepth + 1) + <span style="font-style: italic;">"_"</span> + (2 * destColumn)];
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Get the index of the first non-empty element in each sublist</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">subArr1Idx</span> = -1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">subArr2Idx</span> = -1;
+      <span style="font-weight: bold;">for</span> (i = 0; i &lt; subArr1.size(); i++) {
+        <span style="font-weight: bold;">if</span> (subArr1.value(i) !== <span style="font-style: italic;">""</span>) {
+          subArr1Idx = i;
+          <span style="font-weight: bold;">break</span>;
+        }
+      }
+  
+      <span style="font-weight: bold;">for</span> (i = 0; i &lt; subArr2.size(); i++) {
+        <span style="font-weight: bold;">if</span> (subArr2.value(i) !== <span style="font-style: italic;">""</span>) {
+          subArr2Idx = i;
+          <span style="font-weight: bold;">break</span>;
+        }
+      }
+  
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">srcArr</span>;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">srcIndex</span>;
+      <span style="font-weight: bold;">if</span> (subArr1Idx &gt; -1 &amp;&amp; subArr2Idx &gt; -1) {
+        <span style="font-weight: bold;">if</span> (subArr2.value(subArr2Idx) &lt; subArr1.value(subArr1Idx)) {
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">First element of the second sublist is smallest</span>
+          srcArr = subArr2;
+          srcIndex = subArr2Idx;
+        } <span style="font-weight: bold;">else</span> {
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">First element of the first sublist is smallest</span>
+          srcArr = subArr1;
+          srcIndex = subArr1Idx;
+        }
+      } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (subArr1Idx &gt; -1) {
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Right sublist if exhausted</span>
+        srcArr = subArr1;
+        srcIndex = subArr1Idx;
+      } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (subArr2Idx &gt; -1) {
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Left sublist is exhausted</span>
+        srcArr = subArr2;
+        srcIndex = subArr2Idx;
+      } <span style="font-weight: bold;">else</span> {
+
+        <span style="font-weight: bold;">return</span>;
+      }
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Select the element to move</span>
+      clickHandler(srcArr, srcIndex);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Select the destination where the element should be moved</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">destArr</span> = arrays[<span style="font-style: italic;">"array_"</span> + destDepth + <span style="font-style: italic;">"_"</span> + destColumn];
+      clickHandler(destArr, destIndex);
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Click handler for all array elements</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">clickHandler</span>(<span style="font-weight: bold; font-style: italic;">arr</span>, <span style="font-weight: bold; font-style: italic;">index</span>) {
+      <span style="font-weight: bold;">if</span> (mergeValueIndex === -1) { <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">No element is currently selected,</span>
+                                    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">select the current element</span>
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Don't let the user select an empty element</span>
+        <span style="font-weight: bold;">if</span> (arr.value(index) === <span style="font-style: italic;">""</span>) { <span style="font-weight: bold;">return</span>; }
+        arr.highlight(index);
+        mergeValueArr = arr;
+        mergeValueIndex = index;
+        <span style="font-weight: bold;">return</span>;
+      } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (arr === mergeValueArr &amp;&amp; index === mergeValueIndex) {
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Deselect the currently selected element</span>
+        resetMergeVars();
+      } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (arr !== mergeValueArr) { <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Decide how to handle selected element</span>
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Don't let the user overwrite a merged element</span>
+        <span style="font-weight: bold;">if</span> (arr.value(index) !== <span style="font-style: italic;">""</span>) { <span style="font-weight: bold;">return</span>; }
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arrLevel</span> = getLevel(arr);
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">mvaLevel</span> = getLevel(mergeValueArr);
+  
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Ensure the user only merges one level up, not down or too far up</span>
+        <span style="font-weight: bold;">if</span> (arrLevel === mvaLevel - 1 &amp;&amp; mergeValueArr !== <span style="font-weight: bold; text-decoration: underline;">null</span> &amp;&amp;
+                                         mergeValueIndex &gt; -1) {
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Complete merge by setting the value of the current element</span>
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">to the stored value</span>
+          arr.value(index, mergeValueArr.value(mergeValueIndex));
+  
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Clear values the user has already merged</span>
+          mergeValueArr.value(mergeValueIndex, <span style="font-style: italic;">""</span>);
+  
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Hide arrays once the user empties them</span>
+          <span style="font-weight: bold;">if</span> (mergeValueArr.isEmpty()) {
+            mergeValueArr.hide();
+          }
+  
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Update the value in the userAnswerValue array and the depth</span>
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">in the userAnswerDepth array</span>
+          <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">usrAnsIndex</span> = findUsrAnswerIndex(arr, index);
+          userAnswerValue.value(usrAnsIndex, arr.value(index));
+          userAnswerDepth.value(usrAnsIndex, arrLevel);
+  
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Reset the merge variables so we have a clean state for an undo</span>
+          resetMergeVars();
+  
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Mark this as a step to be graded and a step that can be undone</span>
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">(continuous feedback)</span>
+          exercise.gradeableStep();
+        } <span style="font-weight: bold;">else</span> {
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Deselect the current element, if the user is trying to merge down</span>
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">rather than up</span>
+          resetMergeVars();
+        }
+      }
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Convenience function to reset the merge variables</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">resetMergeVars</span>() {
+      <span style="font-weight: bold;">if</span> (mergeValueArr !== <span style="font-weight: bold; text-decoration: underline;">null</span>) {
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Deselect an element after it is merged or if it is clicked again</span>
+        mergeValueArr.unhighlight(mergeValueIndex);
+      }
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Reset so the next element can be merged</span>
+      mergeValueArr = <span style="font-weight: bold; text-decoration: underline;">null</span>;
+      mergeValueIndex = -1;
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">***************************************************************************</span>
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">*************               Convenience Functions               ***********</span>
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">***************************************************************************</span>
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Given an array and an index in that array, calculates the</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">corresponding position in the userAnswerValue array</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">- The index (starting at 0) within a given row (level) of the</span>
+    <span style="font-weight: bold; font-style: italic;">//   </span><span style="font-weight: bold; font-style: italic;">currently selected element</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">- Used to update the userAnswerValue array each time an element is moved</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">findUsrAnswerIndex</span>(<span style="font-weight: bold; font-style: italic;">arr</span>, <span style="font-weight: bold; font-style: italic;">idx</span>) {
+      <span style="font-weight: bold;">return</span> parseArrData(arr)[2] + idx;
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Return the recursion level of the given array</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Used to ensure a user only merges an element into an array</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">directly above the current one, can't merge down or too far up</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">getLevel</span>(<span style="font-weight: bold; font-style: italic;">arr</span>) {
+      <span style="font-weight: bold;">return</span> parseArrData(arr)[0];
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Parse the level, column and left offset from the specified array's attributes</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">- Expects array IDs matching the following pattern: "array_\d+_\d+"</span>
+    <span style="font-weight: bold; font-style: italic;">//   </span><span style="font-weight: bold; font-style: italic;">where the first number is the level and the second number is the column</span>
+    <span style="font-weight: bold; font-style: italic;">//   </span><span style="font-weight: bold; font-style: italic;">[see setPosition()]</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">- Expects array to have a "data-offset" attribute which is the offset</span>
+    <span style="font-weight: bold; font-style: italic;">//   </span><span style="font-weight: bold; font-style: italic;">between indices in given array and indices in userAnswerValue array</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">parseArrData</span>(<span style="font-weight: bold; font-style: italic;">arr</span>) {
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">id</span> = arr.element.attr(<span style="font-style: italic;">"id"</span>);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">args</span> = id.split(<span style="font-style: italic;">"_"</span>);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">level</span> = parseInt(args[1], 10);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">column</span> = parseInt(args[2], 10);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arrOffset</span> = 0;
+      <span style="font-weight: bold;">if</span> (<span style="font-weight: bold;">typeof</span> arr.element.attr(<span style="font-style: italic;">"data-offset"</span>) !== <span style="font-style: italic;">"undefined"</span>) {
+        arrOffset = parseInt(arr.element.attr(<span style="font-style: italic;">"data-offset"</span>), 10);
+      }
+      <span style="font-weight: bold;">return</span> [level, column, arrOffset];
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Using continuous mode slows the exercise down considerably</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">(probably because it has to check that all the arrays are correct)</span>
+    exercise =
+      av.exercise(
+        modelSolution,
+        initialize,
+        {
+          compare: [{<span style="font-weight: bold;">class</span>: <span style="font-style: italic;">"jsavhighlight"</span>}, {}],
+          controls: $(<span style="font-style: italic;">".jsavexercisecontrols"</span>),
+          fix: fixState,
+          modelDialog: {width: 780}
+        }
+      );
+    exercise.reset();
+  });
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Tangle</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold; font-style: italic;">/*</span><span style="font-weight: bold; font-style: italic;">global alert: true, console: true, ODSA */</span>
+$(document).ready(<span style="font-weight: bold;">function</span>() {
+    <span style="font-style: italic;">"use strict"</span>;
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Load the interpreter created by odsaAV.js</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">config</span> = ODSA.UTILS.loadConfig();
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">interpret</span> = config.interpreter;
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Variables used by "setPosition()"</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">canvasWidth</span> = $(<span style="font-style: italic;">"#container"</span>).width();     <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">The width of the display</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">rowHeight</span> = 70;        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Space required for each row to be displayed</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">blockWidth</span> = 32;       <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">The width of an array element</span>
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Variables used to keep track of the index and array of</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">currently selected element</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">mergeValueIndex</span> = -1;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">mergeValueArr</span> = <span style="font-weight: bold; text-decoration: underline;">null</span>;
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Settings for the AV</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">settings</span> = config.getSettings();
+  
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arraySize</span> = 10,
+        initialArray = [],
+        userAnswerValue = [],
+        userAnswerDepth = [],
+        av = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">JSAV</span>($(<span style="font-style: italic;">".avcontainer"</span>), {settings: settings}),
+        exercise;
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Stores the various JSAV arrays created for the user to enter their solution</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arrays</span> = {};
+  
+    av.recorded();   <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">we are not recording an AV with an algorithm</span>
+  
+
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Process the reset button</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">initialize</span>() {
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Clear all existing arrays</span>
+      $(<span style="font-style: italic;">"#arrays"</span>).html(<span style="font-style: italic;">""</span>);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Generate random numbers for the exercise</span>
+      initialArray = [];
+      userAnswerValue = [];
+      userAnswerDepth = [];
+      <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; arraySize; i++) {
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">randomVal</span> = Math.floor(Math.random() * 100);
+        initialArray[i] = randomVal;
+        userAnswerValue[i] = randomVal;
+      }
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Log the initial state of the exercise</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">initData</span> = {};
+      initData.gen_array = initialArray;
+      ODSA.AV.logExerciseInit(initData);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Dynamically create arrays</span>
+      arrays = {};
+      initArrays(0, initialArray.length - 1, 1, 1, userAnswerDepth, arrays, av);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Reset the merge variables</span>
+      resetMergeVars();
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Create arrays to store the user's answers and hide it because</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">it simply maintains state and is not used for display purposes</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Need to record the order of the values and how deep in the</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">recursion they are in order to ensure a correct answer</span>
+      userAnswerValue = av.ds.array(userAnswerValue, {visible: <span style="font-weight: bold; text-decoration: underline;">false</span>});
+      userAnswerDepth = av.ds.array(userAnswerDepth, {visible: <span style="font-weight: bold; text-decoration: underline;">false</span>});
+  
+      av.forward();
+      av._undo = [];
+      <span style="font-weight: bold;">return</span> [userAnswerValue, userAnswerDepth];
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Create the model solution, which is used for grading the exercise</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">- We must track the value at each horizontal position and vertical</span>
+    <span style="font-weight: bold; font-style: italic;">//   </span><span style="font-weight: bold; font-style: italic;">position (depth) to ensure each element is sorted in the correct order</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">modelSolution</span>(<span style="font-weight: bold; font-style: italic;">jsav</span>) {
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">depth</span> = 1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">modelDepthArr</span> = [];
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">modelArrays</span> = {};
+      initArrays(0, initialArray.length - 1, depth, 1, modelDepthArr, modelArrays, jsav);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">modelArr</span> = jsav.ds.array(initialArray, {
+        indexed: <span style="font-weight: bold; text-decoration: underline;">true</span>,
+        visible: <span style="font-weight: bold; text-decoration: underline;">false</span>
+      });
+      modelDepthArr = jsav.ds.array(modelDepthArr, {
+        indexed: <span style="font-weight: bold; text-decoration: underline;">true</span>,
+        visible: <span style="font-weight: bold; text-decoration: underline;">false</span>
+      });
+      jsav.displayInit();
+  
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">temp</span> = [];
+      mergeSort(jsav, modelArr, temp, modelDepthArr, 0,
+                initialArray.length - 1, depth, 1, modelArrays);
+      <span style="font-weight: bold;">return</span> [modelArr, modelDepthArr];
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Dynamically and recursively create the necessary arrays</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Initialize all single element arrays to contain the appropriate</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">numbers from the initialArray and all other arrays to be empty</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">initArrays</span>(<span style="font-weight: bold; font-style: italic;">left</span>, <span style="font-weight: bold; font-style: italic;">right</span>, <span style="font-weight: bold; font-style: italic;">level</span>, <span style="font-weight: bold; font-style: italic;">column</span>, <span style="font-weight: bold; font-style: italic;">depthArray</span>, <span style="font-weight: bold; font-style: italic;">container</span>, <span style="font-weight: bold; font-style: italic;">jsav</span>) {
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">numElements</span> = right - left + 1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">contents</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Array</span>(numElements);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">isModelAnswer</span> = jsav !== av;
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Set the contents for single element arrays</span>
+      <span style="font-weight: bold;">if</span> (numElements === 1) {
+        contents = [initialArray[left]];
+      }
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Dynamically create and position arrays</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arr</span> = jsav.ds.array(contents,
+                              {indexed: <span style="font-weight: bold; text-decoration: underline;">true</span>, center: <span style="font-weight: bold; text-decoration: underline;">false</span>, layout: <span style="font-style: italic;">"array"</span>});
+  
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">id</span> = <span style="font-style: italic;">"array_"</span> + level + <span style="font-style: italic;">"_"</span> + column;
+      <span style="font-weight: bold;">if</span> (isModelAnswer) {
+        id = <span style="font-style: italic;">"model_"</span> + id;
+      }
+      container[id] = arr;
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Set array attributes</span>
+      arr.element.attr(<span style="font-style: italic;">"id"</span>, id);
+      arr.element.attr(<span style="font-style: italic;">"data-offset"</span>, left);
+      setPosition(arr, level, column);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Attach the click handler to the array</span>
+      <span style="font-weight: bold;">if</span> (!isModelAnswer) { <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">don't attach click handlers for model answer</span>
+        arr.click(<span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">index</span>) { clickHandler(<span style="font-weight: bold; text-decoration: underline;">this</span>, index); });
+      }
+  
+      <span style="font-weight: bold;">if</span> (left === right) {
+        depthArray[left] = level;
+        <span style="font-weight: bold;">return</span>;
+      }
+  
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">mid</span> = Math.floor((left + right) / 2);
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Recurse, passing the appropriate arguments necessary for</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">setPosition() to the next function call</span>
+      initArrays(left, mid, level + 1, 2 * column - 1, depthArray, container, jsav);
+      initArrays(mid + 1, right, level + 1, 2 * column, depthArray, container, jsav);
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Calculate and set the appropriate "top" and "left" CSS values based</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">on the specified array's level of recursion, column number and the</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">number of elements in the array</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">arr - the JSAV array to set the "top" and "left" values for</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">level - the level of recursion, the full-size array is level 1</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">column - the array's column number in the current row</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">setPosition</span>(<span style="font-weight: bold; font-style: italic;">arr</span>, <span style="font-weight: bold; font-style: italic;">level</span>, <span style="font-weight: bold; font-style: italic;">column</span>) {
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Calculate the number of arrays in the current row</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">numArrInRow</span> = Math.pow(2, level - 1);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Calculate the left value of the current array by dividing</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">the width of the canvas by twice the number of arrays that should</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">appear in that row: (canvasWidth / (2 * numArrInRow))</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Odd multiples of the resulting value define a line through the center</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">of each array in the row, found using the formula (2 * column - 1)</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Note: while it is not used, even multiples define the center between</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">two consecutive arrays. Since we want the left value rather than the</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">center value of each array we calculate the length each array</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">(blockWidth *  arr.size()), divide this value in half and</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">subtract it from the center line to find the left value</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">elementLeft</span> = (canvasWidth / (2 * numArrInRow)) * (2 * column - 1) -
+                        (blockWidth * arr.size() / 2),
+          elementTop = rowHeight * (level - 1);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Set the top and left values so that all arrays are spaced properly</span>
+      arr.element.css({left: elementLeft, top: elementTop});
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Generate the model answer (called by modelSolution())</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">mergeSort</span>(<span style="font-weight: bold; font-style: italic;">jsav</span>, <span style="font-weight: bold; font-style: italic;">modelArray</span>, <span style="font-weight: bold; font-style: italic;">temp</span>, <span style="font-weight: bold; font-style: italic;">depthArray</span>, <span style="font-weight: bold; font-style: italic;">l</span>, <span style="font-weight: bold; font-style: italic;">r</span>, <span style="font-weight: bold; font-style: italic;">depth</span>, <span style="font-weight: bold; font-style: italic;">column</span>, <span style="font-weight: bold; font-style: italic;">container</span>) {
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Record the depth and return when list has one element</span>
+      <span style="font-weight: bold;">if</span> (l === r) {
+        depthArray.value(l, depth);
+        <span style="font-weight: bold;">return</span>;
+      }
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Select midpoint</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">mid</span> = Math.floor((l + r) / 2);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Mergesort first half</span>
+      mergeSort(jsav, modelArray, temp, depthArray, l, mid, depth + 1, column * 2 - 1, container);
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Mergesort second half</span>
+      mergeSort(jsav, modelArray, temp, depthArray, mid + 1, r, depth + 1, column * 2, container);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Copy subarray into temp</span>
+      <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = l; i &lt;= r; i++) {
+        temp[i] = modelArray.value(i);
+      }
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Do the merge operation back to the array</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i1</span> = l;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i2</span> = mid + 1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">currArray</span> = container[<span style="font-style: italic;">"model_array_"</span> + depth + <span style="font-style: italic;">"_"</span> + column];
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">lArray</span> = container[<span style="font-style: italic;">"model_array_"</span> + (depth + 1) + <span style="font-style: italic;">"_"</span> + (column * 2 - 1)];
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">rArray</span> = container[<span style="font-style: italic;">"model_array_"</span> + (depth + 1) + <span style="font-style: italic;">"_"</span> + (column * 2)];
+      <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">curr</span> = l; curr &lt;= r; curr++) {
+        <span style="font-weight: bold;">if</span> (i1 === mid + 1) {          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Left sublist exhausted</span>
+          jsav.effects.moveValue(rArray, i2 - mid - 1, currArray, curr - l);
+          modelArray.value(curr, temp[i2++]);
+        } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (i2 &gt; r) {             <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Right sublist exhausted</span>
+          jsav.effects.moveValue(lArray, i1 - l, currArray, curr - l);
+          modelArray.value(curr, temp[i1++]);
+        } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (temp[i1] &lt; temp[i2]) { <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Get smaller</span>
+          jsav.effects.moveValue(lArray, i1 - l, currArray, curr - l);
+          modelArray.value(curr, temp[i1++]);
+        } <span style="font-weight: bold;">else</span> {
+          jsav.effects.moveValue(rArray, i2 - mid - 1, currArray, curr - l);
+          modelArray.value(curr, temp[i2++]);
+        }
+  
+        <span style="font-weight: bold;">if</span> (i1 === mid + 1) {
+          lArray.hide();
+        }
+        <span style="font-weight: bold;">if</span> (i2 &gt; r) {
+          rArray.hide();
+        }
+  
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Update the depth of each number being merged</span>
+        depthArray.value(curr, depth);
+        jsav.stepOption(<span style="font-style: italic;">"grade"</span>, <span style="font-weight: bold; text-decoration: underline;">true</span>);
+        jsav.step();
+      }
+      <span style="font-weight: bold;">return</span>;
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Fixstate method for continuous feedback/fix mode</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Uses the difference between the model and user depth array to determine</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">the absolute index and row where a value should be placed.</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Determine the relative destination index and which column the destination array is in.</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Find the destination array's two sublists and the first remaining element in each.</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Compare these values to determine which should be moved to the destination array.</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Call 'clickHandler' with the appropriate calculated values to select the element to move</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">and call it again to move it to the destination.</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">fixState</span>(<span style="font-weight: bold; font-style: italic;">modelState</span>) {
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Pull the model array and state variables out of the modelState argument</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">modelArr</span> = modelState[0];
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">modelDepthArr</span> = modelState[1];
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span>;
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Find the absolute index where the correct value</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">will be placed and which level it belongs in</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">destIndex</span> = 0;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">destDepth</span> = 0;
+      <span style="font-weight: bold;">for</span> (i = 0; i &lt; modelDepthArr.size(); i++) {
+        <span style="font-weight: bold;">if</span> (modelDepthArr.value(i) !== userAnswerDepth.value(i)) {
+          destIndex = i;
+          destDepth = modelDepthArr.value(i);
+          <span style="font-weight: bold;">break</span>;
+        }
+      }
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Determine the correct column and the relative index where</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">the correct answer will be placed</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">destColumn</span> = 1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">left</span> = 0;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">right</span> = modelArr.size() - 1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">mid</span> = 0;
+  
+      <span style="font-weight: bold;">for</span> (i = 0; i &lt; destDepth - 1; i++) {
+        mid = Math.floor((left + right) / 2);
+  
+        <span style="font-weight: bold;">if</span> (destIndex &lt;= mid) {
+          right = mid;
+          destColumn = 2 * destColumn - 1;
+        } <span style="font-weight: bold;">else</span> {
+          left = mid + 1;
+          destColumn = 2 * destColumn;
+        }
+  
+      }
+  
+      destIndex -= left;
+  
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Get the sub arrays from the hash of JSAV arrays</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">subArr1</span> = arrays[<span style="font-style: italic;">"array_"</span> + (destDepth + 1) + <span style="font-style: italic;">"_"</span> + (2 * destColumn - 1)];
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">subArr2</span> = arrays[<span style="font-style: italic;">"array_"</span> + (destDepth + 1) + <span style="font-style: italic;">"_"</span> + (2 * destColumn)];
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Get the index of the first non-empty element in each sublist</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">subArr1Idx</span> = -1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">subArr2Idx</span> = -1;
+      <span style="font-weight: bold;">for</span> (i = 0; i &lt; subArr1.size(); i++) {
+        <span style="font-weight: bold;">if</span> (subArr1.value(i) !== <span style="font-style: italic;">""</span>) {
+          subArr1Idx = i;
+          <span style="font-weight: bold;">break</span>;
+        }
+      }
+  
+      <span style="font-weight: bold;">for</span> (i = 0; i &lt; subArr2.size(); i++) {
+        <span style="font-weight: bold;">if</span> (subArr2.value(i) !== <span style="font-style: italic;">""</span>) {
+          subArr2Idx = i;
+          <span style="font-weight: bold;">break</span>;
+        }
+      }
+  
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">srcArr</span>;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">srcIndex</span>;
+      <span style="font-weight: bold;">if</span> (subArr1Idx &gt; -1 &amp;&amp; subArr2Idx &gt; -1) {
+        <span style="font-weight: bold;">if</span> (subArr2.value(subArr2Idx) &lt; subArr1.value(subArr1Idx)) {
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">First element of the second sublist is smallest</span>
+          srcArr = subArr2;
+          srcIndex = subArr2Idx;
+        } <span style="font-weight: bold;">else</span> {
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">First element of the first sublist is smallest</span>
+          srcArr = subArr1;
+          srcIndex = subArr1Idx;
+        }
+      } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (subArr1Idx &gt; -1) {
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Right sublist if exhausted</span>
+        srcArr = subArr1;
+        srcIndex = subArr1Idx;
+      } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (subArr2Idx &gt; -1) {
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Left sublist is exhausted</span>
+        srcArr = subArr2;
+        srcIndex = subArr2Idx;
+      } <span style="font-weight: bold;">else</span> {
+
+        <span style="font-weight: bold;">return</span>;
+      }
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Select the element to move</span>
+      clickHandler(srcArr, srcIndex);
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Select the destination where the element should be moved</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">destArr</span> = arrays[<span style="font-style: italic;">"array_"</span> + destDepth + <span style="font-style: italic;">"_"</span> + destColumn];
+      clickHandler(destArr, destIndex);
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Click handler for all array elements</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">clickHandler</span>(<span style="font-weight: bold; font-style: italic;">arr</span>, <span style="font-weight: bold; font-style: italic;">index</span>) {
+      <span style="font-weight: bold;">if</span> (mergeValueIndex === -1) { <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">No element is currently selected,</span>
+                                    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">select the current element</span>
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Don't let the user select an empty element</span>
+        <span style="font-weight: bold;">if</span> (arr.value(index) === <span style="font-style: italic;">""</span>) { <span style="font-weight: bold;">return</span>; }
+        arr.highlight(index);
+        mergeValueArr = arr;
+        mergeValueIndex = index;
+        <span style="font-weight: bold;">return</span>;
+      } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (arr === mergeValueArr &amp;&amp; index === mergeValueIndex) {
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Deselect the currently selected element</span>
+        resetMergeVars();
+      } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (arr !== mergeValueArr) { <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Decide how to handle selected element</span>
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Don't let the user overwrite a merged element</span>
+        <span style="font-weight: bold;">if</span> (arr.value(index) !== <span style="font-style: italic;">""</span>) { <span style="font-weight: bold;">return</span>; }
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arrLevel</span> = getLevel(arr);
+        <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">mvaLevel</span> = getLevel(mergeValueArr);
+  
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Ensure the user only merges one level up, not down or too far up</span>
+        <span style="font-weight: bold;">if</span> (arrLevel === mvaLevel - 1 &amp;&amp; mergeValueArr !== <span style="font-weight: bold; text-decoration: underline;">null</span> &amp;&amp;
+                                         mergeValueIndex &gt; -1) {
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Complete merge by setting the value of the current element</span>
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">to the stored value</span>
+          arr.value(index, mergeValueArr.value(mergeValueIndex));
+  
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Clear values the user has already merged</span>
+          mergeValueArr.value(mergeValueIndex, <span style="font-style: italic;">""</span>);
+  
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Hide arrays once the user empties them</span>
+          <span style="font-weight: bold;">if</span> (mergeValueArr.isEmpty()) {
+            mergeValueArr.hide();
+          }
+  
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Update the value in the userAnswerValue array and the depth</span>
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">in the userAnswerDepth array</span>
+          <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">usrAnsIndex</span> = findUsrAnswerIndex(arr, index);
+          userAnswerValue.value(usrAnsIndex, arr.value(index));
+          userAnswerDepth.value(usrAnsIndex, arrLevel);
+  
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Reset the merge variables so we have a clean state for an undo</span>
+          resetMergeVars();
+  
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Mark this as a step to be graded and a step that can be undone</span>
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">(continuous feedback)</span>
+          exercise.gradeableStep();
+        } <span style="font-weight: bold;">else</span> {
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Deselect the current element, if the user is trying to merge down</span>
+          <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">rather than up</span>
+          resetMergeVars();
+        }
+      }
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Convenience function to reset the merge variables</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">resetMergeVars</span>() {
+      <span style="font-weight: bold;">if</span> (mergeValueArr !== <span style="font-weight: bold; text-decoration: underline;">null</span>) {
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Deselect an element after it is merged or if it is clicked again</span>
+        mergeValueArr.unhighlight(mergeValueIndex);
+      }
+  
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Reset so the next element can be merged</span>
+      mergeValueArr = <span style="font-weight: bold; text-decoration: underline;">null</span>;
+      mergeValueIndex = -1;
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">***************************************************************************</span>
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">*************               Convenience Functions               ***********</span>
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">***************************************************************************</span>
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Given an array and an index in that array, calculates the</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">corresponding position in the userAnswerValue array</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">- The index (starting at 0) within a given row (level) of the</span>
+    <span style="font-weight: bold; font-style: italic;">//   </span><span style="font-weight: bold; font-style: italic;">currently selected element</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">- Used to update the userAnswerValue array each time an element is moved</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">findUsrAnswerIndex</span>(<span style="font-weight: bold; font-style: italic;">arr</span>, <span style="font-weight: bold; font-style: italic;">idx</span>) {
+      <span style="font-weight: bold;">return</span> parseArrData(arr)[2] + idx;
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Return the recursion level of the given array</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Used to ensure a user only merges an element into an array</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">directly above the current one, can't merge down or too far up</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">getLevel</span>(<span style="font-weight: bold; font-style: italic;">arr</span>) {
+      <span style="font-weight: bold;">return</span> parseArrData(arr)[0];
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Parse the level, column and left offset from the specified array's attributes</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">- Expects array IDs matching the following pattern: "array_\d+_\d+"</span>
+    <span style="font-weight: bold; font-style: italic;">//   </span><span style="font-weight: bold; font-style: italic;">where the first number is the level and the second number is the column</span>
+    <span style="font-weight: bold; font-style: italic;">//   </span><span style="font-weight: bold; font-style: italic;">[see setPosition()]</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">- Expects array to have a "data-offset" attribute which is the offset</span>
+    <span style="font-weight: bold; font-style: italic;">//   </span><span style="font-weight: bold; font-style: italic;">between indices in given array and indices in userAnswerValue array</span>
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">parseArrData</span>(<span style="font-weight: bold; font-style: italic;">arr</span>) {
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">id</span> = arr.element.attr(<span style="font-style: italic;">"id"</span>);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">args</span> = id.split(<span style="font-style: italic;">"_"</span>);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">level</span> = parseInt(args[1], 10);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">column</span> = parseInt(args[2], 10);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arrOffset</span> = 0;
+      <span style="font-weight: bold;">if</span> (<span style="font-weight: bold;">typeof</span> arr.element.attr(<span style="font-style: italic;">"data-offset"</span>) !== <span style="font-style: italic;">"undefined"</span>) {
+        arrOffset = parseInt(arr.element.attr(<span style="font-style: italic;">"data-offset"</span>), 10);
+      }
+      <span style="font-weight: bold;">return</span> [level, column, arrOffset];
+    }
+  
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Using continuous mode slows the exercise down considerably</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">(probably because it has to check that all the arrays are correct)</span>
+    exercise =
+      av.exercise(
+        modelSolution,
+        initialize,
+        {
+          compare: [{<span style="font-weight: bold;">class</span>: <span style="font-style: italic;">"jsavhighlight"</span>}, {}],
+          controls: $(<span style="font-style: italic;">".jsavexercisecontrols"</span>),
+          fix: fixState,
+          modelDialog: {width: 780}
+        }
+      );
+    exercise.reset();
+  });
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2019-05-22 Wed</p>
+<p class="author">Author: VLEAD</p>
+<p class="date">Created: 2019-08-23 Fri 14:57</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

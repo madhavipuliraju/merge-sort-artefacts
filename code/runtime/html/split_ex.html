@@ -1,0 +1,34 @@
+
+    <!DOCTYPE HTML>
+    <html lang="en">
+      <head>
+          <title>Bubble Sort</title>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="stylesheet" href="../css/mergesort.css">
+          <script src="../js/split_ex.js"></script>
+      </head>
+      <body onload="reset()" onresize="draw()">
+        
+            <div class="instruction">
+                <b>Instructions</b>:
+                <ul>
+                <li>Enter the values of indices (in the input boxes given) between which you want to slice the array which appears in green. </li>
+                <li>If your answer is wrong, you will see a message indicating the same.</li>
+                </ul>
+            </div>
+         
+        
+            <div>
+              <canvas id="canvas" width="400" height="240"></canvas>
+            </div>
+        
+            <p>
+              Split the array between indices &nbsp<input type="number" name="a" id="input1" min="1" max="10">
+              &nbsp and &nbsp <input type="number" name="b" id="input2" min="1" max="10">
+              <button id="split">Split</button>
+              <button type="button" class = "button" id="reset">Reset</button>
+              <button type="button" class = "button" id="undo">Undo</button>
+            </p>
+      </body>
+    </html>

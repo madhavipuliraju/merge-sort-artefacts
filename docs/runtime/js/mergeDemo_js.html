@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Demonstration artefact for Merge Sort (Javascript)</title>
+<!-- 2019-08-23 Fri 14:57 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Bhuvanesh Sridharan" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Demonstration artefact for Merge Sort (Javascript)</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Tangle</a></li>
+</ul>
+</div>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-js" id="mergeDemo"><span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">Comments Dictionary</span>
+comments = {
+  <span style="font-style: italic;">"av_c1"</span>: <span style="font-style: italic;">"Select the entire array"</span>,
+  <span style="font-style: italic;">"av_c2"</span>: <span style="font-style: italic;">"Done sorting!"</span>,
+  <span style="font-style: italic;">"av_c3"</span>: <span style="font-style: italic;">"An array of length 1 cannot be split, ready for merge"</span>,
+  <span style="font-style: italic;">"av_c4"</span>: <span style="font-style: italic;">"Split the selected array (as evenly as possible)"</span>,
+  <span style="font-style: italic;">"av_c5"</span>: <span style="font-style: italic;">"Select the left subarray"</span>,
+  <span style="font-style: italic;">"av_c6"</span>: <span style="font-style: italic;">"Select the right subarray"</span>,
+  <span style="font-style: italic;">"av_c7"</span>: <span style="font-style: italic;">"Merge selected arrays back together, in sorted order"</span>,
+  <span style="font-style: italic;">"av_c8"</span>: <span style="font-style: italic;">"When one list becomes empty, copy all values from the remaining array into the sorted array"</span>,
+  <span style="font-style: italic;">"av_c9"</span>: <span style="font-style: italic;">"Select the smallest value from the front of each list (excluding values already in the sorted array)"</span>,
+  <span style="font-style: italic;">"av_c10"</span>: <span style="font-style: italic;">"Select the minimum of the two values"</span>,
+  <span style="font-style: italic;">"av_c11"</span>: <span style="font-style: italic;">"Add the selected value to the sorted array"</span>,
+  <span style="font-style: italic;">"av_c12"</span>: <span style="font-style: italic;">"Finished merging"</span>
+}
+
+commentsQueue = []
+
+
+<span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">displayComment</span> = <span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">str</span>){
+  $(<span style="font-style: italic;">'#ins'</span>).html(str);
+}
+
+
+<span style="font-weight: bold; font-style: italic;">/*</span><span style="font-weight: bold; font-style: italic;">global alert: true, ODSA */</span>
+$(document).ready(<span style="font-weight: bold;">function</span>() {
+  <span style="font-style: italic;">"use strict"</span>;
+  <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">av</span>,   <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">for JSAV library object</span>
+      arr;  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">for the JSAV array</span>
+
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Load the interpreter created by odsaAV.js</span>
+  <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">config</span> = ODSA.UTILS.loadConfig(),
+      interpret = config.interpreter,
+      settings = config.getSettings();      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Settings for the AV</span>
+
+
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Initialize the arraysize dropdown list</span>
+  ODSA.AV.initArraySize(5,12,6)
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Process about button: Pop up a message with an Alert</span>
+
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Execute the "Run" button function</span>
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">runIt</span>() {
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arrValues</span> = ODSA.AV.processArrayValues();
+
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">If arrValues is null, the user gave us junk which they need to fix</span>
+    <span style="font-weight: bold;">if</span> (arrValues) {
+      ODSA.AV.reset(<span style="font-weight: bold; text-decoration: underline;">true</span>);
+      av = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">JSAV</span>($(<span style="font-style: italic;">".avcontainer"</span>), {settings: settings});
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Create a new array using the layout the user has selected</span>
+      arr = av.ds.array(arrValues, {indexed: <span style="font-weight: bold; text-decoration: underline;">true</span>});
+      av.displayInit();
+
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">BEGIN MERGESORT IMPLEMENTATION</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">level</span> = 1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">column</span> = 1;
+      
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c1"]);</span>
+      commentsQueue.push(comments[<span style="font-style: italic;">"av_c1"</span>])
+      mergesort(arr, level, column);
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">END MERGESORT IMPLEMENTATION</span>
+
+      
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c2"]);</span>
+      commentsQueue.push(comments[<span style="font-style: italic;">"av_c2"</span>])
+      av.recorded(); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">mark the end</span>
+    }
+  }
+
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">The space required for each row to be displayed</span>
+  <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">canvasWidth</span> = $(<span style="font-style: italic;">"#container"</span>).width();
+  <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">rowHeight</span> = 75;
+  <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">blockWidth</span> = 32;
+
+  <span style="font-weight: bold; font-style: italic;">/**</span>
+<span style="font-weight: bold; font-style: italic;">   * Recursively splits input array until single element arrays are achieved,</span>
+<span style="font-weight: bold; font-style: italic;">   * arrays are then merged back together in sorted order</span>
+<span style="font-weight: bold; font-style: italic;">   *</span>
+<span style="font-weight: bold; font-style: italic;">   * arr - a JSAV array</span>
+<span style="font-weight: bold; font-style: italic;">   * level - the current depth of the recursion</span>
+<span style="font-weight: bold; font-style: italic;">   * column - the column number of the current array</span>
+<span style="font-weight: bold; font-style: italic;">   */</span>
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">mergesort</span>(<span style="font-weight: bold; font-style: italic;">arr</span>, <span style="font-weight: bold; font-style: italic;">level</span>, <span style="font-weight: bold; font-style: italic;">column</span>) {
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Correctly position the array</span>
+    setPosition(arr, level, column);
+
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arrLen</span> = arr.size();
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">returnArr</span> = arr;
+
+    arr.highlight();
+    <span style="font-weight: bold;">if</span> (arrLen === 1) {    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Base case</span>
+      
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c3"]);</span>
+      commentsQueue.push(comments[<span style="font-style: italic;">"av_c3"</span>])
+      av.step();
+      arr.unhighlight();
+    } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (arrLen &gt; 1) { <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">General recursive case</span>
+      av.step();
+      
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c4"]);</span>
+      commentsQueue.push(comments[<span style="font-style: italic;">"av_c4"</span>])
+      arr.unhighlight();
+
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Find the middle of the array,</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">if can't split evenly make the first array larger</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">midPoint</span> = Math.ceil(arrLen / 2);
+
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Create and display sub-arrays</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">subArr1</span> = arr.slice(0, midPoint);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">avSubArr1</span> = av.ds.array(subArr1, {indexed: <span style="font-weight: bold; text-decoration: underline;">true</span>, center: <span style="font-weight: bold; text-decoration: underline;">false</span>});
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">subArr2</span> = arr.slice(midPoint, arrLen);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">avSubArr2</span> = av.ds.array(subArr2, {indexed: <span style="font-weight: bold; text-decoration: underline;">true</span>, center: <span style="font-weight: bold; text-decoration: underline;">false</span>});
+
+      av.step();
+
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Recurse on both sub-arrays</span>
+      
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c5"]);</span>
+      commentsQueue.push(comments[<span style="font-style: italic;">"av_c5"</span>])
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">childArr1Col</span> = column * 2 - 1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">retArr1</span> = mergesort(avSubArr1, level + 1, childArr1Col);
+
+      
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c6"]);</span>
+      commentsQueue.push(comments[<span style="font-style: italic;">"av_c6"</span>])
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">childArr2Col</span> = column * 2;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">retArr2</span> = mergesort(avSubArr2, level + 1, childArr2Col);
+
+      returnArr = merge(arr, retArr1, retArr2);
+    }
+    <span style="font-weight: bold;">return</span> returnArr;
+  }
+
+  <span style="font-weight: bold; font-style: italic;">/**</span>
+<span style="font-weight: bold; font-style: italic;">   * Merges two arrays back together in sorted order</span>
+<span style="font-weight: bold; font-style: italic;">   *</span>
+<span style="font-weight: bold; font-style: italic;">   * origArr - the original array that will be overwritten by the merge</span>
+<span style="font-weight: bold; font-style: italic;">   * arr1 - the first array to merge</span>
+<span style="font-weight: bold; font-style: italic;">   * arr2 - the second array to merge</span>
+<span style="font-weight: bold; font-style: italic;">   */</span>
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">merge</span>(<span style="font-weight: bold; font-style: italic;">origArr</span>, <span style="font-weight: bold; font-style: italic;">arr1</span>, <span style="font-weight: bold; font-style: italic;">arr2</span>) {
+    
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c7"]);</span>
+    commentsQueue.push(comments[<span style="font-style: italic;">"av_c7"</span>])
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Clear the values from the original array</span>
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; origArr.size(); i++) {
+      origArr.value(i, <span style="font-style: italic;">""</span>);
+    }
+
+    arr1.highlight();
+    arr2.highlight();
+    av.step();
+
+    <span style="font-weight: bold;">if</span> (arr1.size() &gt; 1) {
+      arr1.unhighlight();
+      arr2.unhighlight();
+    }
+
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">pos1</span> = 0;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">pos2</span> = 0;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">index</span> = 0;
+
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Merge the two arrays together, in sorted order</span>
+    <span style="font-weight: bold;">while</span> (pos1 &lt; arr1.size() || pos2 &lt; arr2.size()) {
+      <span style="font-weight: bold;">if</span> (pos1 === arr1.size() || pos2 === arr2.size()) {
+        
+        <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c8"]);</span>
+        commentsQueue.push(comments[<span style="font-style: italic;">"av_c8"</span>])
+      } <span style="font-weight: bold;">else</span> {
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Eliminate one step for single element arrays to reduce tedium</span>
+        <span style="font-weight: bold;">if</span> (arr1.size() &gt; 1) {
+          <span style="font-weight: bold;">if</span> (pos1 &lt; arr1.size()) {
+            arr1.highlight(pos1);
+          }
+          <span style="font-weight: bold;">if</span> (pos2 &lt; arr2.size()) {
+            arr2.highlight(pos2);
+          }
+          
+          <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c9"]);</span>
+          commentsQueue.push(comments[<span style="font-style: italic;">"av_c9"</span>])
+          av.step();
+        }
+        
+        <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c10"]);</span>
+        commentsQueue.push(comments[<span style="font-style: italic;">"av_c10"</span>])
+      }
+
+      <span style="font-weight: bold;">if</span> (pos1 &lt; arr1.size() &amp;&amp;
+          (arr1.value(pos1) &lt;= arr2.value(pos2) || pos2 === arr2.size())) {
+        arr1.unhighlight(pos1).highlightBlue(pos1);
+        av.step();
+
+        origArr.value(index, arr1.value(pos1));
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Clear the value from the previous array</span>
+        arr1.value(pos1, <span style="font-style: italic;">""</span>);
+        arr1.unhighlightBlue(pos1);
+        pos1++;
+      } <span style="font-weight: bold;">else</span> {
+        arr2.unhighlight(pos2).highlightBlue(pos2);
+        av.step();
+
+        origArr.value(index, arr2.value(pos2));
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Clear the value from the previous array</span>
+        arr2.value(pos2, <span style="font-style: italic;">""</span>);
+        arr2.unhighlightBlue(pos2);
+        pos2++;
+      }
+
+      origArr.highlightBlue(index);
+      
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c11"]);</span>
+      commentsQueue.push(comments[<span style="font-style: italic;">"av_c11"</span>])
+      av.step();
+
+      origArr.unhighlightBlue(index).markSorted(index);
+      index++;
+    }
+
+    
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c12"]);</span>
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">commentsQueue.push(comments["av_c12"])</span>
+    arr1.hide();
+    arr2.hide();
+    av.step();
+
+    av.clearumsg();
+    <span style="font-weight: bold;">return</span> origArr;
+  }
+
+  <span style="font-weight: bold; font-style: italic;">/**</span>
+<span style="font-weight: bold; font-style: italic;">   * Calculate and set the appropriate 'top' and 'left' CSS values based</span>
+<span style="font-weight: bold; font-style: italic;">   * on the specified array's level of recursion, column number and the</span>
+<span style="font-weight: bold; font-style: italic;">   * number of elements in the array</span>
+<span style="font-weight: bold; font-style: italic;">   *</span>
+<span style="font-weight: bold; font-style: italic;">   * arr - the JSAV array to set the 'top' and 'left' values for</span>
+<span style="font-weight: bold; font-style: italic;">   * level - the level of recursion, the full-size array is level 1</span>
+<span style="font-weight: bold; font-style: italic;">   * column - the array's column number in the current row</span>
+<span style="font-weight: bold; font-style: italic;">   */</span>
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">setPosition</span>(<span style="font-weight: bold; font-style: italic;">arr</span>, <span style="font-weight: bold; font-style: italic;">level</span>, <span style="font-weight: bold; font-style: italic;">column</span>) {
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Calculate the number of arrays in the current row</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">numArrInRow</span> = Math.pow(2, level - 1);
+
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Calculate the left value of the current array by dividing</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">the width of the canvas by twice the number of arrays that should</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">appear in that row: (canvasWidth / (2 * numArrInRow))</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Odd multiples of the resulting value define a line through the</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">center of each array in the row and are found using the formula</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">(2 * column - 1)</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Note: while it is not used, even multiples define the center</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">between two consecutive arrays.</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Since we want the left value rather than the center value of</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">each array we calculate the length each array</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">(blockWidth *  arr.size()), divide this value in half and</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">subtract it from the center line to find the left value</span>
+
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">left</span> = (canvasWidth / (2 * numArrInRow)) * (2 * column - 1) -
+               (blockWidth * arr.size() / 2);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">top</span> = rowHeight * (level - 1);
+
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Set the top and left values so that all arrays are spaced properly</span>
+    arr.element.css({left: left, top: top});
+  }
+
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Connect action callbacks to the HTML entities</span>
+
+  $(<span style="font-style: italic;">"#run"</span>).click(runIt);
+  $(<span style="font-style: italic;">"#ssperform"</span>).submit(<span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">evt</span>) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    runIt();
+  });
+  $(<span style="font-style: italic;">"#reset"</span>).click(ODSA.AV.reset);
+});
+</pre>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Tangle</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">Comments Dictionary</span>
+comments = {
+  <span style="font-style: italic;">"av_c1"</span>: <span style="font-style: italic;">"Select the entire array"</span>,
+  <span style="font-style: italic;">"av_c2"</span>: <span style="font-style: italic;">"Done sorting!"</span>,
+  <span style="font-style: italic;">"av_c3"</span>: <span style="font-style: italic;">"An array of length 1 cannot be split, ready for merge"</span>,
+  <span style="font-style: italic;">"av_c4"</span>: <span style="font-style: italic;">"Split the selected array (as evenly as possible)"</span>,
+  <span style="font-style: italic;">"av_c5"</span>: <span style="font-style: italic;">"Select the left subarray"</span>,
+  <span style="font-style: italic;">"av_c6"</span>: <span style="font-style: italic;">"Select the right subarray"</span>,
+  <span style="font-style: italic;">"av_c7"</span>: <span style="font-style: italic;">"Merge selected arrays back together, in sorted order"</span>,
+  <span style="font-style: italic;">"av_c8"</span>: <span style="font-style: italic;">"When one list becomes empty, copy all values from the remaining array into the sorted array"</span>,
+  <span style="font-style: italic;">"av_c9"</span>: <span style="font-style: italic;">"Select the smallest value from the front of each list (excluding values already in the sorted array)"</span>,
+  <span style="font-style: italic;">"av_c10"</span>: <span style="font-style: italic;">"Select the minimum of the two values"</span>,
+  <span style="font-style: italic;">"av_c11"</span>: <span style="font-style: italic;">"Add the selected value to the sorted array"</span>,
+  <span style="font-style: italic;">"av_c12"</span>: <span style="font-style: italic;">"Finished merging"</span>
+}
+
+commentsQueue = []
+
+
+<span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">displayComment</span> = <span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">str</span>){
+  $(<span style="font-style: italic;">'#ins'</span>).html(str);
+}
+
+
+<span style="font-weight: bold; font-style: italic;">/*</span><span style="font-weight: bold; font-style: italic;">global alert: true, ODSA */</span>
+$(document).ready(<span style="font-weight: bold;">function</span>() {
+  <span style="font-style: italic;">"use strict"</span>;
+  <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">av</span>,   <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">for JSAV library object</span>
+      arr;  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">for the JSAV array</span>
+
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Load the interpreter created by odsaAV.js</span>
+  <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">config</span> = ODSA.UTILS.loadConfig(),
+      interpret = config.interpreter,
+      settings = config.getSettings();      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Settings for the AV</span>
+
+
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Initialize the arraysize dropdown list</span>
+  ODSA.AV.initArraySize(5,12,6)
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Process about button: Pop up a message with an Alert</span>
+
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Execute the "Run" button function</span>
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">runIt</span>() {
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arrValues</span> = ODSA.AV.processArrayValues();
+
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">If arrValues is null, the user gave us junk which they need to fix</span>
+    <span style="font-weight: bold;">if</span> (arrValues) {
+      ODSA.AV.reset(<span style="font-weight: bold; text-decoration: underline;">true</span>);
+      av = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">JSAV</span>($(<span style="font-style: italic;">".avcontainer"</span>), {settings: settings});
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Create a new array using the layout the user has selected</span>
+      arr = av.ds.array(arrValues, {indexed: <span style="font-weight: bold; text-decoration: underline;">true</span>});
+      av.displayInit();
+
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">BEGIN MERGESORT IMPLEMENTATION</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">level</span> = 1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">column</span> = 1;
+      
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c1"]);</span>
+      commentsQueue.push(comments[<span style="font-style: italic;">"av_c1"</span>])
+      mergesort(arr, level, column);
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">END MERGESORT IMPLEMENTATION</span>
+
+      
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c2"]);</span>
+      commentsQueue.push(comments[<span style="font-style: italic;">"av_c2"</span>])
+      av.recorded(); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">mark the end</span>
+    }
+  }
+
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">The space required for each row to be displayed</span>
+  <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">canvasWidth</span> = $(<span style="font-style: italic;">"#container"</span>).width();
+  <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">rowHeight</span> = 75;
+  <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">blockWidth</span> = 32;
+
+  <span style="font-weight: bold; font-style: italic;">/**</span>
+<span style="font-weight: bold; font-style: italic;">   * Recursively splits input array until single element arrays are achieved,</span>
+<span style="font-weight: bold; font-style: italic;">   * arrays are then merged back together in sorted order</span>
+<span style="font-weight: bold; font-style: italic;">   *</span>
+<span style="font-weight: bold; font-style: italic;">   * arr - a JSAV array</span>
+<span style="font-weight: bold; font-style: italic;">   * level - the current depth of the recursion</span>
+<span style="font-weight: bold; font-style: italic;">   * column - the column number of the current array</span>
+<span style="font-weight: bold; font-style: italic;">   */</span>
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">mergesort</span>(<span style="font-weight: bold; font-style: italic;">arr</span>, <span style="font-weight: bold; font-style: italic;">level</span>, <span style="font-weight: bold; font-style: italic;">column</span>) {
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Correctly position the array</span>
+    setPosition(arr, level, column);
+
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">arrLen</span> = arr.size();
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">returnArr</span> = arr;
+
+    arr.highlight();
+    <span style="font-weight: bold;">if</span> (arrLen === 1) {    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Base case</span>
+      
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c3"]);</span>
+      commentsQueue.push(comments[<span style="font-style: italic;">"av_c3"</span>])
+      av.step();
+      arr.unhighlight();
+    } <span style="font-weight: bold;">else</span> <span style="font-weight: bold;">if</span> (arrLen &gt; 1) { <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">General recursive case</span>
+      av.step();
+      
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c4"]);</span>
+      commentsQueue.push(comments[<span style="font-style: italic;">"av_c4"</span>])
+      arr.unhighlight();
+
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Find the middle of the array,</span>
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">if can't split evenly make the first array larger</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">midPoint</span> = Math.ceil(arrLen / 2);
+
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Create and display sub-arrays</span>
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">subArr1</span> = arr.slice(0, midPoint);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">avSubArr1</span> = av.ds.array(subArr1, {indexed: <span style="font-weight: bold; text-decoration: underline;">true</span>, center: <span style="font-weight: bold; text-decoration: underline;">false</span>});
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">subArr2</span> = arr.slice(midPoint, arrLen);
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">avSubArr2</span> = av.ds.array(subArr2, {indexed: <span style="font-weight: bold; text-decoration: underline;">true</span>, center: <span style="font-weight: bold; text-decoration: underline;">false</span>});
+
+      av.step();
+
+      <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Recurse on both sub-arrays</span>
+      
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c5"]);</span>
+      commentsQueue.push(comments[<span style="font-style: italic;">"av_c5"</span>])
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">childArr1Col</span> = column * 2 - 1;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">retArr1</span> = mergesort(avSubArr1, level + 1, childArr1Col);
+
+      
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c6"]);</span>
+      commentsQueue.push(comments[<span style="font-style: italic;">"av_c6"</span>])
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">childArr2Col</span> = column * 2;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">retArr2</span> = mergesort(avSubArr2, level + 1, childArr2Col);
+
+      returnArr = merge(arr, retArr1, retArr2);
+    }
+    <span style="font-weight: bold;">return</span> returnArr;
+  }
+
+  <span style="font-weight: bold; font-style: italic;">/**</span>
+<span style="font-weight: bold; font-style: italic;">   * Merges two arrays back together in sorted order</span>
+<span style="font-weight: bold; font-style: italic;">   *</span>
+<span style="font-weight: bold; font-style: italic;">   * origArr - the original array that will be overwritten by the merge</span>
+<span style="font-weight: bold; font-style: italic;">   * arr1 - the first array to merge</span>
+<span style="font-weight: bold; font-style: italic;">   * arr2 - the second array to merge</span>
+<span style="font-weight: bold; font-style: italic;">   */</span>
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">merge</span>(<span style="font-weight: bold; font-style: italic;">origArr</span>, <span style="font-weight: bold; font-style: italic;">arr1</span>, <span style="font-weight: bold; font-style: italic;">arr2</span>) {
+    
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c7"]);</span>
+    commentsQueue.push(comments[<span style="font-style: italic;">"av_c7"</span>])
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Clear the values from the original array</span>
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; origArr.size(); i++) {
+      origArr.value(i, <span style="font-style: italic;">""</span>);
+    }
+
+    arr1.highlight();
+    arr2.highlight();
+    av.step();
+
+    <span style="font-weight: bold;">if</span> (arr1.size() &gt; 1) {
+      arr1.unhighlight();
+      arr2.unhighlight();
+    }
+
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">pos1</span> = 0;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">pos2</span> = 0;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">index</span> = 0;
+
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Merge the two arrays together, in sorted order</span>
+    <span style="font-weight: bold;">while</span> (pos1 &lt; arr1.size() || pos2 &lt; arr2.size()) {
+      <span style="font-weight: bold;">if</span> (pos1 === arr1.size() || pos2 === arr2.size()) {
+        
+        <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c8"]);</span>
+        commentsQueue.push(comments[<span style="font-style: italic;">"av_c8"</span>])
+      } <span style="font-weight: bold;">else</span> {
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Eliminate one step for single element arrays to reduce tedium</span>
+        <span style="font-weight: bold;">if</span> (arr1.size() &gt; 1) {
+          <span style="font-weight: bold;">if</span> (pos1 &lt; arr1.size()) {
+            arr1.highlight(pos1);
+          }
+          <span style="font-weight: bold;">if</span> (pos2 &lt; arr2.size()) {
+            arr2.highlight(pos2);
+          }
+          
+          <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c9"]);</span>
+          commentsQueue.push(comments[<span style="font-style: italic;">"av_c9"</span>])
+          av.step();
+        }
+        
+        <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c10"]);</span>
+        commentsQueue.push(comments[<span style="font-style: italic;">"av_c10"</span>])
+      }
+
+      <span style="font-weight: bold;">if</span> (pos1 &lt; arr1.size() &amp;&amp;
+          (arr1.value(pos1) &lt;= arr2.value(pos2) || pos2 === arr2.size())) {
+        arr1.unhighlight(pos1).highlightBlue(pos1);
+        av.step();
+
+        origArr.value(index, arr1.value(pos1));
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Clear the value from the previous array</span>
+        arr1.value(pos1, <span style="font-style: italic;">""</span>);
+        arr1.unhighlightBlue(pos1);
+        pos1++;
+      } <span style="font-weight: bold;">else</span> {
+        arr2.unhighlight(pos2).highlightBlue(pos2);
+        av.step();
+
+        origArr.value(index, arr2.value(pos2));
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Clear the value from the previous array</span>
+        arr2.value(pos2, <span style="font-style: italic;">""</span>);
+        arr2.unhighlightBlue(pos2);
+        pos2++;
+      }
+
+      origArr.highlightBlue(index);
+      
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c11"]);</span>
+      commentsQueue.push(comments[<span style="font-style: italic;">"av_c11"</span>])
+      av.step();
+
+      origArr.unhighlightBlue(index).markSorted(index);
+      index++;
+    }
+
+    
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">displayComment(comments["av_c12"]);</span>
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">commentsQueue.push(comments["av_c12"])</span>
+    arr1.hide();
+    arr2.hide();
+    av.step();
+
+    av.clearumsg();
+    <span style="font-weight: bold;">return</span> origArr;
+  }
+
+  <span style="font-weight: bold; font-style: italic;">/**</span>
+<span style="font-weight: bold; font-style: italic;">   * Calculate and set the appropriate 'top' and 'left' CSS values based</span>
+<span style="font-weight: bold; font-style: italic;">   * on the specified array's level of recursion, column number and the</span>
+<span style="font-weight: bold; font-style: italic;">   * number of elements in the array</span>
+<span style="font-weight: bold; font-style: italic;">   *</span>
+<span style="font-weight: bold; font-style: italic;">   * arr - the JSAV array to set the 'top' and 'left' values for</span>
+<span style="font-weight: bold; font-style: italic;">   * level - the level of recursion, the full-size array is level 1</span>
+<span style="font-weight: bold; font-style: italic;">   * column - the array's column number in the current row</span>
+<span style="font-weight: bold; font-style: italic;">   */</span>
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">setPosition</span>(<span style="font-weight: bold; font-style: italic;">arr</span>, <span style="font-weight: bold; font-style: italic;">level</span>, <span style="font-weight: bold; font-style: italic;">column</span>) {
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Calculate the number of arrays in the current row</span>
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">numArrInRow</span> = Math.pow(2, level - 1);
+
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Calculate the left value of the current array by dividing</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">the width of the canvas by twice the number of arrays that should</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">appear in that row: (canvasWidth / (2 * numArrInRow))</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Odd multiples of the resulting value define a line through the</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">center of each array in the row and are found using the formula</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">(2 * column - 1)</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Note: while it is not used, even multiples define the center</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">between two consecutive arrays.</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Since we want the left value rather than the center value of</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">each array we calculate the length each array</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">(blockWidth *  arr.size()), divide this value in half and</span>
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">subtract it from the center line to find the left value</span>
+
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">left</span> = (canvasWidth / (2 * numArrInRow)) * (2 * column - 1) -
+               (blockWidth * arr.size() / 2);
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">top</span> = rowHeight * (level - 1);
+
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Set the top and left values so that all arrays are spaced properly</span>
+    arr.element.css({left: left, top: top});
+  }
+
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">Connect action callbacks to the HTML entities</span>
+
+  $(<span style="font-style: italic;">"#run"</span>).click(runIt);
+  $(<span style="font-style: italic;">"#ssperform"</span>).submit(<span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">evt</span>) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    runIt();
+  });
+  $(<span style="font-style: italic;">"#reset"</span>).click(ODSA.AV.reset);
+});
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2019-05-22 Wed</p>
+<p class="author">Author: Bhuvanesh Sridharan</p>
+<p class="date">Created: 2019-08-23 Fri 14:57</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
